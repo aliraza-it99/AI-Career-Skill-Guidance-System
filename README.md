@@ -49,7 +49,7 @@ To create a personal AI career counselor that helps students:
 | Category    |  Tools / Platforms |
 |-----------  |------------------|
 | AI & Chatbot| Voiceflow, OpenAI GPT API 
-| Automation  | Make.com (Integromat), Zapier , Google Apps Script 
+| Automation  | Make.com (Integromat),n8n, Zapier , Google Apps Script 
 | Database    | Google Sheets 
 | Frontend    | HTML, CSS (for interface ) 
 | Design      | Canva, Figma 

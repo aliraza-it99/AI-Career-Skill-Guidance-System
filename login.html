@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - AI Career & Skill Guidance System</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Plus Jakarta Sans', sans-serif; }
+    html, body { height: 100%; margin: 0; }
+    .glass { background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); }
+    .gradient-bg { background: linear-gradient(135deg, #4B0082 0%, #6A0DAD 50%, #8B5CF6 100%); }
+    .gradient-text { background: linear-gradient(135deg, #4B0082, #6A0DAD); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    input:focus, textarea:focus, select:focus { outline: none; border-color: #6A0DAD; box-shadow: 0 0 0 3px rgba(106,13,173,0.1); }
+  </style>
+</head>
+<body class="bg-gray-50">
+  <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="w-full max-w-md">
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <div class="flex items-center justify-center gap-2 mb-4">
+          <div class="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center">
+            <i data-lucide="brain" class="w-6 h-6 text-white"></i>
+          </div>
+          <h1 class="text-2xl font-bold gradient-text">AI Career Guide</h1>
+        </div>
+        <h2 class="text-2xl font-bold text-gray-900 mb-2">Student Login</h2>
+        <p class="text-gray-600 text-sm">Access your career guidance dashboard</p>
+      </div>
+
+      <!-- Login Form -->
+      <div class="bg-white rounded-2xl shadow-xl p-8">
+        <form id="login-form" onsubmit="handleLogin(event)">
+          <!-- Email -->
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1" for="login-email">Email Address</label>
+            <div class="relative">
+              <i data-lucide="mail" class="absolute left-3 top-3 w-5 h-5 text-gray-400"></i>
+              <input type="email" id="login-email" required 
+                class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-purple-700 transition"
+                placeholder="you@example.com">
+            </div>
+            <p id="email-error" class="text-red-500 text-xs mt-1 hidden"></p>
+          </div>
+
+          <!-- Password -->
+          <div class="mb-2">
+            <label class="block text-sm font-medium text-gray-700 mb-1" for="login-password">Password</label>
+            <div class="relative">
+              <i data-lucide="lock" class="absolute left-3 top-3 w-5 h-5 text-gray-400"></i>
+              <input type="password" id="login-password" required 
+                class="w-full pl-10 pr-10 py-3 rounded-xl border border-gray-200 text-sm focus:border-purple-700 transition"
+                placeholder="Enter your password">
+              <button type="button" onclick="togglePassword()" class="absolute right-3 top-3 text-gray-400">
+                <i id="pwd-eye" data-lucide="eye" class="w-5 h-5"></i>
+              </button>
+            </div>
+            <p id="password-error" class="text-red-500 text-xs mt-1 hidden"></p>
+          </div>
+
+          <!-- Remember Me & Forgot Password -->
+          <div class="flex items-center justify-between mb-6 text-sm">
+            <label class="flex items-center gap-2 text-gray-700">
+              <input type="checkbox" id="remember-me" class="rounded border-gray-300 accent-purple-700">
+              <span>Remember me</span>
+            </label>
+            <a href="#" onclick="showForgotPassword()" class="text-purple-700 hover:text-purple-900 font-medium">Forgot Password?</a>
+          </div>
+
+          <!-- Login Button -->
+          <button type="submit" class="w-full py-3 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition">
+            Login
+          </button>
+        </form>
+
+        <!-- Error Message -->
+        <div id="error-message" class="hidden mt-4 p-4 bg-red-50 rounded-xl">
+          <div class="flex items-center gap-2 text-red-700 text-sm">
+            <i data-lucide="alert-circle" class="w-5 h-5"></i>
+            <span id="error-text"></span>
+          </div>
+        </div>
+
+        <!-- Success Message -->
+        <div id="success-message" class="hidden mt-4 p-4 bg-green-50 rounded-xl">
+          <div class="flex items-center gap-2 text-green-700 text-sm">
+            <i data-lucide="check-circle" class="w-5 h-5"></i>
+            <span>Login successful! Redirecting...</span>
+          </div>
+        </div>
+
+        <!-- Sign Up Link -->
+        <p class="text-center text-sm text-gray-600 mt-6">
+          Don't have an account? 
+          <a href="signup.html" class="font-medium text-purple-700 hover:text-purple-900">Sign up here</a>
+        </p>
+
+        <!-- Demo Account Info -->
+        <div class="mt-6 p-4 bg-purple-50 rounded-lg text-xs text-gray-600 border border-purple-100">
+          <p class="font-medium text-purple-700 mb-2">Demo Account:</p>
+          <p>Email: demo@example.com</p>
+          <p>Password: Demo@12345</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Forgot Password Modal -->
+  <div id="forgot-password-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-xl font-bold text-gray-900">Reset Password</h3>
+        <button onclick="closeForgotPassword()" class="text-gray-400 hover:text-gray-600">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <form onsubmit="handleForgotPassword(event)">
+        <div class="mb-4">
+          <label class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+          <input type="email" id="reset-email" required 
+            class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-purple-700 transition"
+            placeholder="Enter your registered email">
+          <p id="reset-email-error" class="text-red-500 text-xs mt-1 hidden"></p>
+        </div>
+
+        <p class="text-xs text-gray-600 mb-4">
+          We'll send you a password reset link to your email address.
+        </p>
+
+        <button type="submit" class="w-full py-3 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition">
+          Send Reset Link
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // ==================== AUTO-LOGIN ====================
+    function autoLogin() {
+      const rememberMe = localStorage.getItem('aiCareerRememberMe');
+      const savedEmail = localStorage.getItem('aiCareerLastEmail');
+      
+      if (rememberMe && savedEmail) {
+        // Try to auto-login
+        const users = JSON.parse(localStorage.getItem('aiCareerUsers') || '[]');
+        const user = users.find(u => u.email === savedEmail);
+        
+        if (user) {
+          loginUser(user);
+          return true;
+        }
+      }
+      return false;
+    }
+
+    // ==================== LOGIN HANDLER ====================
+    function handleLogin(event) {
+      event.preventDefault();
+      
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value;
+      const rememberMe = document.getElementById('remember-me').checked;
+
+      // Validate email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showError('Please enter a valid email address');
+        return;
+      }
+
+      // Validate password
+      if (password.length < 8) {
+        showError('Password must be at least 8 characters');
+        return;
+      }
+
+      // Find user
+      const users = JSON.parse(localStorage.getItem('aiCareerUsers') || '[]');
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (!user) {
+        showError('Invalid email or password');
+        return;
+      }
+
+      // Handle remember me
+      if (rememberMe) {
+        localStorage.setItem('aiCareerRememberMe', 'true');
+        localStorage.setItem('aiCareerLastEmail', email);
+      } else {
+        localStorage.removeItem('aiCareerRememberMe');
+        localStorage.removeItem('aiCareerLastEmail');
+      }
+
+      // Login user
+      loginUser(user);
+    }
+
+    function loginUser(user) {
+      // Save current session
+      localStorage.setItem('aiCareerCurrentUser', JSON.stringify({
+        id: user.id,
+        fullname: user.fullname,
+        email: user.email,
+        education: user.education
+      }));
+
+      // Show success message
+      document.getElementById('login-form').classList.add('hidden');
+      document.getElementById('error-message').classList.add('hidden');
+      document.getElementById('success-message').classList.remove('hidden');
+
+      // Redirect to index.html after 1.5 seconds
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 1500);
+    }
+
+    function showError(message) {
+      document.getElementById('error-text').textContent = message;
+      document.getElementById('error-message').classList.remove('hidden');
+      document.getElementById('success-message').classList.add('hidden');
+    }
+
+    function togglePassword() {
+      const input = document.getElementById('login-password');
+      const eye = document.getElementById('pwd-eye');
+      input.type = input.type === 'password' ? 'text' : 'password';
+      eye.setAttribute('data-lucide', input.type === 'password' ? 'eye' : 'eye-off');
+      lucide.createIcons();
+    }
+
+    // ==================== FORGOT PASSWORD ====================
+    function showForgotPassword() {
+      document.getElementById('forgot-password-modal').classList.remove('hidden');
+    }
+
+    function closeForgotPassword() {
+      document.getElementById('forgot-password-modal').classList.add('hidden');
+      document.getElementById('reset-email').value = '';
+      document.getElementById('reset-email-error').classList.add('hidden');
+    }
+
+    function handleForgotPassword(event) {
+      event.preventDefault();
+      
+      const email = document.getElementById('reset-email').value.trim();
+      const users = JSON.parse(localStorage.getItem('aiCareerUsers') || '[]');
+      
+      const user = users.find(u => u.email === email);
+      
+      if (!user) {
+        document.getElementById('reset-email-error').textContent = 'No account found with this email';
+        document.getElementById('reset-email-error').classList.remove('hidden');
+        return;
+      }
+
+      // Simulate sending reset link
+      alert('Password reset link has been sent to ' + email + '.\n\nIn a production app, this would send an actual email.\n\nFor demo: Your password is "' + user.password + '"');
+      closeForgotPassword();
+    }
+
+    // ==================== INIT ====================
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      
+      // Create demo user if it doesn't exist
+      const users = JSON.parse(localStorage.getItem('aiCareerUsers') || '[]');
+      if (!users.some(u => u.email === 'demo@example.com')) {
+        users.push({
+          id: 1,
+          fullname: 'Demo Student',
+          email: 'demo@example.com',
+          phone: '1234567890',
+          education: 'bachelor',
+          semester: '3rd Year',
+          password: 'Demo@12345',
+          createdAt: new Date().toISOString(),
+          career: 'Software Engineering',
+          skillScore: 45,
+          progress: 35,
+          resumeScore: 68,
+          completedSkills: ['JavaScript', 'React'],
+          completedCourses: ['Web Dev Basics']
+        });
+        localStorage.setItem('aiCareerUsers', JSON.stringify(users));
+      }
+
+      // Try auto-login
+      if (autoLogin()) {
+        return;
+      }
+    });
+  </script>
+</body>
+</html>

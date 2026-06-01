@@ -1,1040 +1,1093 @@
 <!doctype html>
 <html lang="en" class="h-full">
- <head>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Career &amp; Skill Guidance System</title>
+  <title>AI Career & Skill Guidance System</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <script src="/_sdk/element_sdk.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-* { font-family: 'Plus Jakarta Sans', sans-serif; }
-html, body { height: 100%; margin: 0; }
-.glass { background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); }
-.glass-white { background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); }
-.gradient-bg { background: linear-gradient(135deg, #4B0082 0%, #6A0DAD 50%, #8B5CF6 100%); }
-.gradient-text { background: linear-gradient(135deg, #4B0082, #6A0DAD); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.card-hover { transition: all 0.3s ease; }
-.card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(75,0,130,0.15); }
-.fade-in { animation: fadeIn 0.5s ease; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-.progress-bar { transition: width 1s ease; }
-.chat-bubble { animation: slideUp 0.3s ease; }
-@keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-.nav-link { position: relative; }
-.nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: #6A0DAD; transition: width 0.3s; }
-.nav-link:hover::after { width: 100%; }
-.badge { animation: pop 0.3s ease; }
-@keyframes pop { 0% { transform: scale(0); } 80% { transform: scale(1.1); } 100% { transform: scale(1); } }
-input:focus, textarea:focus, select:focus { outline: none; border-color: #6A0DAD; box-shadow: 0 0 0 3px rgba(106,13,173,0.1); }
-.mobile-menu { transform: translateX(-100%); transition: transform 0.3s ease; }
-.mobile-menu.open { transform: translateX(0); }
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #f1f1f1; }
-::-webkit-scrollbar-thumb { background: #6A0DAD; border-radius: 3px; }
-</style>
+    * { font-family: 'Plus Jakarta Sans', sans-serif; }
+    html, body { height: 100%; margin: 0; }
+    .glass { background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); }
+    .glass-white { background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); }
+    .gradient-bg { background: linear-gradient(135deg, #4B0082 0%, #6A0DAD 50%, #8B5CF6 100%); }
+    .gradient-text { background: linear-gradient(135deg, #4B0082, #6A0DAD); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(75,0,130,0.15); }
+    .fade-in { animation: fadeIn 0.5s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .progress-bar { transition: width 1s ease; }
+    .chat-bubble { animation: slideUp 0.3s ease; }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .nav-link { position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: #6A0DAD; transition: width 0.3s; }
+    .nav-link:hover::after { width: 100%; }
+    .badge { animation: pop 0.3s ease; }
+    @keyframes pop { 0% { transform: scale(0); } 80% { transform: scale(1.1); } 100% { transform: scale(1); } }
+    input:focus, textarea:focus, select:focus { outline: none; border-color: #6A0DAD; box-shadow: 0 0 0 3px rgba(106,13,173,0.1); }
+    .mobile-menu { transform: translateX(-100%); transition: transform 0.3s ease; }
+    .mobile-menu.open { transform: translateX(0); }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f1f1; }
+    ::-webkit-scrollbar-thumb { background: #6A0DAD; border-radius: 3px; }
+  </style>
   <script>
-tailwind.config = {
-  theme: {
-    extend: {
-      colors: {
-        purple: { 900: '#4B0082', 800: '#5B0DA0', 700: '#6A0DAD', 600: '#7C3AED', 500: '#8B5CF6', 400: '#A78BFA', 300: '#C4B5FD', 200: '#DDD6FE', 100: '#EDE9FE', 50: '#F5F3FF' }
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            purple: { 900: '#4B0082', 800: '#5B0DA0', 700: '#6A0DAD', 600: '#7C3AED', 500: '#8B5CF6', 400: '#A78BFA', 300: '#C4B5FD', 200: '#DDD6FE', 100: '#EDE9FE', 50: '#F5F3FF' }
+          }
+        }
       }
     }
-  }
-}
-</script>
-  <style>body { box-sizing: border-box; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
- <script src="/_sdk/telemetry_sdk.js"></script></head>
- <body class="h-full bg-gray-50 overflow-auto">
+  </script>
+</head>
+<body class="h-full bg-gray-50 overflow-auto">
   <div id="app" class="w-full min-h-full">
-   <!-- NAVIGATION -->
-   <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-     <div class="flex items-center justify-between h-16">
-      <div class="flex items-center gap-2">
-       <div class="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center">
-        <i data-lucide="brain" class="w-5 h-5 text-white"></i>
-       </div><span class="font-bold text-purple-900 text-lg hidden sm:block">AI Career Guide</span>
+    <!-- NAVIGATION -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg gradient-bg flex items-center justify-center">
+              <i data-lucide="brain" class="w-5 h-5 text-white"></i>
+            </div>
+            <span class="font-bold text-purple-900 text-lg hidden sm:block">AI Career Guide</span>
+          </div>
+          
+          <div class="hidden md:flex items-center gap-6" id="nav-links">
+            <a href="#" onclick="navigate('home')" class="nav-link text-sm font-medium text-gray-700 hover:text-purple-700">Home</a>
+            <a href="#" onclick="navigate('dashboard')" id="nav-dashboard" class="nav-link text-sm font-medium text-gray-700 hover:text-purple-700 hidden">Dashboard</a>
+            <a href="#" onclick="navigate('career-rec')" id="nav-career" class="nav-link text-sm font-medium text-gray-700 hover:text-purple-700 hidden">Career AI</a>
+            <a href="#" onclick="navigate('chatbot')" id="nav-chat" class="nav-link text-sm font-medium text-gray-700 hover:text-purple-700 hidden">Chatbot</a>
+            <a href="#" onclick="navigate('roadmap')" id="nav-roadmap" class="nav-link text-sm font-medium text-gray-700 hover:text-purple-700 hidden">Roadmap</a>
+            <a href="#" onclick="navigate('resources')" id="nav-resources" class="nav-link text-sm font-medium text-gray-700 hover:text-purple-700 hidden">Resources</a>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button id="login-btn" onclick="navigate('login')" class="px-4 py-2 text-sm font-medium text-purple-700 border border-purple-200 rounded-lg hover:bg-purple-50 transition">Login</button>
+            <button id="logout-btn" onclick="handleLogout()" class="px-4 py-2 text-sm font-medium text-white bg-purple-700 rounded-lg hover:bg-purple-900 transition hidden">Logout</button>
+            <button onclick="toggleMobileMenu()" class="md:hidden p-1 rounded hover:bg-gray-100">
+              <i data-lucide="menu" class="w-6 h-6 text-gray-700"></i>
+            </button>
+          </div>
+        </div>
       </div>
-      <div class="hidden md:flex items-center gap-6" id="nav-links">
-       <a href="#" onclick="navigate('home')" class="nav-link text-sm font-medium text-gray-700 hover:text-purple-700">Home</a> <a href="#" onclick="navigate('dashboard')" class="nav-link text-sm font-medium text-gray-700 hover:text-purple-700" id="nav-dashboard" style="display:none;">Dashboard</a> <a href="#" onclick="navigate('career-rec')" class="nav-link text-sm font-medium text-gray-700 hover:text-purple-700" id="nav-career" style="display:none;">Career AI</a> <a href="#" onclick="navigate('chatbot')" class="nav-link text-sm font-medium text-gray-700 hover:text-purple-700" id="nav-chat" style="display:none;">Chatbot</a> <a href="#" onclick="navigate('roadmap')" class="nav-link text-sm font-medium text-gray-700 hover:text-purple-700" id="nav-roadmap" style="display:none;">Roadmap</a> <a href="#" onclick="navigate('skill-gap')" class="nav-link text-sm font-medium text-gray-700 hover:text-purple-700" id="nav-skill" style="display:none;">Skill Gap</a> <a href="#" onclick="navigate('resources')" class="nav-link text-sm font-medium text-gray-700 hover:text-purple-700" id="nav-resources" style="display:none;">Resources</a> <a href="#" onclick="navigate('compare')" class="nav-link text-sm font-medium text-gray-700 hover:text-purple-700" id="nav-compare" style="display:none;">Compare</a> <a href="#" onclick="navigate('resume')" class="nav-link text-sm font-medium text-gray-700 hover:text-purple-700" id="nav-resume" style="display:none;">Resume</a> <a href="#" onclick="navigate('report')" class="nav-link text-sm font-medium text-gray-700 hover:text-purple-700" id="nav-report" style="display:none;">Report</a>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 w-64 h-full bg-white z-[60] shadow-2xl p-6">
+      <div class="flex items-center justify-between mb-8">
+        <span class="font-bold text-purple-900">Menu</span>
+        <button onclick="toggleMobileMenu()" class="p-1 rounded hover:bg-gray-100">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
       </div>
-      <div class="flex items-center gap-3">
-       <button id="login-btn" onclick="navigate('login')" class="px-4 py-2 text-sm font-medium text-purple-700 border border-purple-200 rounded-lg hover:bg-purple-50 transition">Login</button> <button id="logout-btn" onclick="logout()" style="display:none;" class="px-4 py-2 text-sm font-medium text-white bg-purple-700 rounded-lg hover:bg-purple-800 transition">Logout</button> <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg hover:bg-gray-100"> <i data-lucide="menu" class="w-5 h-5"></i> </button>
+      <div class="flex flex-col gap-3" id="mobile-nav-links">
+        <a href="#" onclick="navigate('home');toggleMobileMenu()" class="py-2 px-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-700 font-medium">Home</a>
+        <a href="#" onclick="navigate('dashboard');toggleMobileMenu()" class="py-2 px-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-700 font-medium mobile-auth hidden">Dashboard</a>
+        <a href="#" onclick="navigate('career-rec');toggleMobileMenu()" class="py-2 px-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-700 font-medium mobile-auth hidden">Career AI</a>
+        <a href="#" onclick="navigate('chatbot');toggleMobileMenu()" class="py-2 px-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-700 font-medium mobile-auth hidden">Chatbot</a>
+        <a href="#" onclick="navigate('resources');toggleMobileMenu()" class="py-2 px-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-700 font-medium mobile-auth hidden">Resources</a>
       </div>
-     </div>
     </div>
-   </nav><!-- MOBILE MENU -->
-   <div id="mobile-menu" class="mobile-menu fixed top-0 left-0 w-64 h-full bg-white z-[60] shadow-2xl p-6">
-    <div class="flex items-center justify-between mb-8">
-     <span class="font-bold text-purple-900">Menu</span> <button onclick="toggleMobileMenu()" class="p-1 rounded hover:bg-gray-100"><i data-lucide="x" class="w-5 h-5"></i></button>
+    <div id="mobile-overlay" onclick="toggleMobileMenu()" class="fixed inset-0 bg-black/50 z-[55] hidden"></div>
+
+    <!-- ==================== PAGES ==================== -->
+    
+    <!-- HOME PAGE -->
+    <div id="page-home" class="page pt-16">
+      <section class="gradient-bg relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+          <div class="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+          <div class="absolute bottom-10 right-10 w-96 h-96 bg-purple-300 rounded-full blur-3xl"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative z-10">
+          <div class="text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-white text-sm mb-6">
+              <i data-lucide="sparkles" class="w-4 h-4"></i>
+              <span>Final Year Project - AI Powered</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">AI Career & Skill<br>Guidance System</h1>
+            <p class="text-lg md:text-xl text-purple-100 mb-8 max-w-2xl mx-auto">Your AI-Powered Career Counselor — Get personalized career recommendations, skill analysis, and learning resources tailored to your interests.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <button onclick="navigate('login')" class="px-8 py-3 bg-white text-purple-700 font-semibold rounded-xl hover:bg-purple-50 transition shadow-lg">Get Started Free</button>
+              <button onclick="document.getElementById('features-section').scrollIntoView({behavior:'smooth'})" class="px-8 py-3 border-2 border-white text-white font-semibold rounded-xl hover:bg-white/10 transition">Learn More</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section id="features-section" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-4">Powerful Features</h2>
+            <p class="text-gray-600 max-w-xl mx-auto">Everything you need to make informed career decisions</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="card-hover p-6 rounded-2xl border border-gray-100 bg-white shadow-sm">
+              <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-4">
+                <i data-lucide="target" class="w-6 h-6 text-purple-700"></i>
+              </div>
+              <h3 class="font-semibold text-lg mb-2">AI Career Matching</h3>
+              <p class="text-gray-600 text-sm">Get personalized career recommendations based on your interests and skills.</p>
+            </div>
+            <div class="card-hover p-6 rounded-2xl border border-gray-100 bg-white shadow-sm">
+              <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-4">
+                <i data-lucide="message-circle" class="w-6 h-6 text-purple-700"></i>
+              </div>
+              <h3 class="font-semibold text-lg mb-2">AI Chatbot</h3>
+              <p class="text-gray-600 text-sm">Ask career questions and get instant AI-powered guidance.</p>
+            </div>
+            <div class="card-hover p-6 rounded-2xl border border-gray-100 bg-white shadow-sm">
+              <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-4">
+                <i data-lucide="map" class="w-6 h-6 text-purple-700"></i>
+              </div>
+              <h3 class="font-semibold text-lg mb-2">Career Roadmap</h3>
+              <p class="text-gray-600 text-sm">Step-by-step learning paths from beginner to professional.</p>
+            </div>
+            <div class="card-hover p-6 rounded-2xl border border-gray-100 bg-white shadow-sm">
+              <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-4">
+                <i data-lucide="bar-chart-3" class="w-6 h-6 text-purple-700"></i>
+              </div>
+              <h3 class="font-semibold text-lg mb-2">Skill Gap Analysis</h3>
+              <p class="text-gray-600 text-sm">Identify missing skills and get improvement suggestions.</p>
+            </div>
+            <div class="card-hover p-6 rounded-2xl border border-gray-100 bg-white shadow-sm">
+              <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-4">
+                <i data-lucide="file-text" class="w-6 h-6 text-purple-700"></i>
+              </div>
+              <h3 class="font-semibold text-lg mb-2">Resume Checker</h3>
+              <p class="text-gray-600 text-sm">Get your resume scored and receive improvement suggestions.</p>
+            </div>
+            <div class="card-hover p-6 rounded-2xl border border-gray-100 bg-white shadow-sm">
+              <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-4">
+                <i data-lucide="book-open" class="w-6 h-6 text-purple-700"></i>
+              </div>
+              <h3 class="font-semibold text-lg mb-2">Learning Resources</h3>
+              <p class="text-gray-600 text-sm">Curated courses, tutorials, and documentation links.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="gradient-bg py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-white">
+            <div>
+              <h3 class="font-bold text-lg mb-3">AI Career Guide</h3>
+              <p class="text-purple-200 text-sm">Final Year Project - AI Career and Skill Guidance System. Helping students make informed career decisions.</p>
+            </div>
+            <div>
+              <h3 class="font-bold mb-3">Quick Links</h3>
+              <div class="flex flex-col gap-2 text-sm text-purple-200">
+                <a href="#" onclick="navigate('home')" class="hover:text-white">Home</a>
+                <a href="#" onclick="navigate('login')" class="hover:text-white">Login</a>
+                <a href="signup.html" class="hover:text-white">Sign Up</a>
+              </div>
+            </div>
+            <div>
+              <h3 class="font-bold mb-3">Contact</h3>
+              <p class="text-purple-200 text-sm">University FYP Project<br>Department of Computer Science<br>fyp@university.edu</p>
+            </div>
+          </div>
+          <div class="border-t border-white/20 mt-8 pt-8 text-center text-purple-200 text-sm">
+            <p>© 2024 AI Career & Skill Guidance System — Final Year Project</p>
+          </div>
+        </div>
+      </footer>
     </div>
-    <div class="flex flex-col gap-3" id="mobile-nav-links">
-     <a href="#" onclick="navigate('home');toggleMobileMenu()" class="py-2 px-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-700 font-medium">Home</a> <a href="#" onclick="navigate('dashboard');toggleMobileMenu()" class="py-2 px-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-700 font-medium mobile-auth" style="display:none;">Dashboard</a> <a href="#" onclick="navigate('career-rec');toggleMobileMenu()" class="py-2 px-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-700 font-medium mobile-auth" style="display:none;">Career AI</a> <a href="#" onclick="navigate('chatbot');toggleMobileMenu()" class="py-2 px-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-700 font-medium mobile-auth" style="display:none;">Chatbot</a> <a href="#" onclick="navigate('roadmap');toggleMobileMenu()" class="py-2 px-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-700 font-medium mobile-auth" style="display:none;">Roadmap</a> <a href="#" onclick="navigate('skill-gap');toggleMobileMenu()" class="py-2 px-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-700 font-medium mobile-auth" style="display:none;">Skill Gap</a> <a href="#" onclick="navigate('resources');toggleMobileMenu()" class="py-2 px-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-700 font-medium mobile-auth" style="display:none;">Resources</a> <a href="#" onclick="navigate('compare');toggleMobileMenu()" class="py-2 px-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-700 font-medium mobile-auth" style="display:none;">Compare</a> <a href="#" onclick="navigate('resume');toggleMobileMenu()" class="py-2 px-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-700 font-medium mobile-auth" style="display:none;">Resume</a> <a href="#" onclick="navigate('report');toggleMobileMenu()" class="py-2 px-3 rounded-lg text-gray-700 hover:bg-purple-50 hover:text-purple-700 font-medium mobile-auth" style="display:none;">Report</a>
-    </div>
-   </div>
-   <div id="mobile-overlay" onclick="toggleMobileMenu()" class="fixed inset-0 bg-black/50 z-[55] hidden"></div><!-- ==================== PAGES ==================== --> <!-- HOME PAGE -->
-   <div id="page-home" class="page pt-16">
-    <!-- Hero -->
-    <section class="gradient-bg relative overflow-hidden">
-     <div class="absolute inset-0 opacity-10">
-      <div class="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
-      <div class="absolute bottom-10 right-10 w-96 h-96 bg-purple-300 rounded-full blur-3xl"></div>
-     </div>
-     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 relative z-10">
+
+    <!-- LOGIN PAGE (Redirects to login.html) -->
+    <div id="page-login" class="page hidden pt-16 min-h-full gradient-bg flex items-center justify-center">
       <div class="text-center">
-       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-white text-sm mb-6">
-        <i data-lucide="sparkles" class="w-4 h-4"></i> <span>Final Year Project - AI Powered</span>
-       </div>
-       <h1 id="hero-title" class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">AI Career &amp; Skill<br>
-         Guidance System</h1>
-       <p id="hero-subtitle" class="text-lg md:text-xl text-purple-100 mb-8 max-w-2xl mx-auto">Your AI-Powered Career Counselor — Get personalized career recommendations, skill analysis, and learning roadmaps tailored just for you.</p>
-       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <button onclick="navigate('login')" class="px-8 py-3 bg-white text-purple-700 font-semibold rounded-xl hover:bg-purple-50 transition shadow-lg">Get Started Free</button> <button onclick="document.getElementById('features-section').scrollIntoView({behavior:'smooth'})" class="px-8 py-3 border-2 border-white/50 text-white font-semibold rounded-xl hover:bg-white/10 transition">Explore Features</button>
-       </div>
+        <p class="text-white mb-4">Redirecting to login page...</p>
       </div>
-     </div>
-    </section><!-- Features -->
-    <section id="features-section" class="py-20 bg-white">
-     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-       <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-4">Powerful Features</h2>
-       <p class="text-gray-600 max-w-xl mx-auto">Everything you need to make informed career decisions</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-       <div class="card-hover p-6 rounded-2xl border border-gray-100 bg-white shadow-sm">
-        <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-4"><i data-lucide="target" class="w-6 h-6 text-purple-700"></i>
-        </div>
-        <h3 class="font-semibold text-lg mb-2">AI Career Matching</h3>
-        <p class="text-gray-600 text-sm">Get personalized career recommendations based on your interests and skills.</p>
-       </div>
-       <div class="card-hover p-6 rounded-2xl border border-gray-100 bg-white shadow-sm">
-        <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-4"><i data-lucide="message-circle" class="w-6 h-6 text-purple-700"></i>
-        </div>
-        <h3 class="font-semibold text-lg mb-2">AI Chatbot</h3>
-        <p class="text-gray-600 text-sm">Ask career questions and get instant AI-powered guidance.</p>
-       </div>
-       <div class="card-hover p-6 rounded-2xl border border-gray-100 bg-white shadow-sm">
-        <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-4"><i data-lucide="map" class="w-6 h-6 text-purple-700"></i>
-        </div>
-        <h3 class="font-semibold text-lg mb-2">Career Roadmap</h3>
-        <p class="text-gray-600 text-sm">Step-by-step learning paths from beginner to professional.</p>
-       </div>
-       <div class="card-hover p-6 rounded-2xl border border-gray-100 bg-white shadow-sm">
-        <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-4"><i data-lucide="bar-chart-3" class="w-6 h-6 text-purple-700"></i>
-        </div>
-        <h3 class="font-semibold text-lg mb-2">Skill Gap Analysis</h3>
-        <p class="text-gray-600 text-sm">Identify missing skills and get improvement suggestions.</p>
-       </div>
-       <div class="card-hover p-6 rounded-2xl border border-gray-100 bg-white shadow-sm">
-        <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-4"><i data-lucide="file-text" class="w-6 h-6 text-purple-700"></i>
-        </div>
-        <h3 class="font-semibold text-lg mb-2">Resume Checker</h3>
-        <p class="text-gray-600 text-sm">Get your resume scored and receive improvement suggestions.</p>
-       </div>
-       <div class="card-hover p-6 rounded-2xl border border-gray-100 bg-white shadow-sm">
-        <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-4"><i data-lucide="book-open" class="w-6 h-6 text-purple-700"></i>
-        </div>
-        <h3 class="font-semibold text-lg mb-2">Learning Resources</h3>
-        <p class="text-gray-600 text-sm">Curated courses, tutorials, and documentation links.</p>
-       </div>
-      </div>
-     </div>
-    </section><!-- Testimonials -->
-    <section class="py-20 bg-purple-50">
-     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-       <h2 class="text-3xl font-bold gradient-text mb-4">What Students Say</h2>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-       <div class="bg-white p-6 rounded-2xl shadow-sm">
-        <div class="flex items-center gap-3 mb-4">
-         <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white font-bold">
-          A
-         </div>
-         <div>
-          <p class="font-semibold text-sm">Ahmed Khan</p>
-          <p class="text-xs text-gray-500">CS Student</p>
-         </div>
-        </div>
-        <p class="text-gray-600 text-sm">"This system helped me choose Data Science as my career. The roadmap feature is amazing!"</p>
-        <div class="flex gap-1 mt-3"><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
-        </div>
-       </div>
-       <div class="bg-white p-6 rounded-2xl shadow-sm">
-        <div class="flex items-center gap-3 mb-4">
-         <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white font-bold">
-          S
-         </div>
-         <div>
-          <p class="font-semibold text-sm">Sara Ali</p>
-          <p class="text-xs text-gray-500">IT Student</p>
-         </div>
-        </div>
-        <p class="text-gray-600 text-sm">"The skill gap analysis showed me exactly what I was missing. Highly recommended!"</p>
-        <div class="flex gap-1 mt-3"><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
-        </div>
-       </div>
-       <div class="bg-white p-6 rounded-2xl shadow-sm">
-        <div class="flex items-center gap-3 mb-4">
-         <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white font-bold">
-          M
-         </div>
-         <div>
-          <p class="font-semibold text-sm">Muhammad Usman</p>
-          <p class="text-xs text-gray-500">SE Student</p>
-         </div>
-        </div>
-        <p class="text-gray-600 text-sm">"The chatbot answered all my career questions. It's like having a personal advisor!"</p>
-        <div class="flex gap-1 mt-3"><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i><i data-lucide="star" class="w-4 h-4 text-yellow-400 fill-yellow-400"></i>
-        </div>
-       </div>
-      </div>
-     </div>
-    </section><!-- Footer -->
-    <footer class="gradient-bg py-12">
-     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-white">
-       <div>
-        <h3 class="font-bold text-lg mb-3">AI Career Guide</h3>
-        <p class="text-purple-200 text-sm">Final Year Project - AI Career and Skill Guidance System. Helping students make informed career decisions.</p>
-       </div>
-       <div>
-        <h3 class="font-bold mb-3">Quick Links</h3>
-        <div class="flex flex-col gap-2 text-sm text-purple-200">
-         <a href="#" onclick="navigate('home')" class="hover:text-white">Home</a> <a href="#" onclick="navigate('login')" class="hover:text-white">Login</a> <a href="#" class="hover:text-white">About</a>
-        </div>
-       </div>
-       <div>
-        <h3 class="font-bold mb-3">Contact</h3>
-        <p class="text-purple-200 text-sm">University FYP Project<br>
-          Department of Computer Science<br>
-          fyp@university.edu</p>
-       </div>
-      </div>
-      <div class="border-t border-white/20 mt-8 pt-8 text-center text-purple-200 text-sm">
-       <p>© 2024 AI Career &amp; Skill Guidance System — Final Year Project</p>
-      </div>
-     </div>
-    </footer>
-   </div><!-- LOGIN PAGE -->
-   <div id="page-login" class="page hidden pt-16 min-h-full gradient-bg flex items-center justify-center">
-    <div class="w-full max-w-md mx-4 my-8">
-     <div class="bg-white rounded-2xl shadow-2xl p-8">
-      <div class="text-center mb-8">
-       <div class="w-16 h-16 rounded-2xl gradient-bg flex items-center justify-center mx-auto mb-4"><i data-lucide="user" class="w-8 h-8 text-white"></i>
-       </div>
-       <h2 class="text-2xl font-bold gradient-text">Student Login</h2>
-       <p class="text-gray-500 text-sm mt-1">Access your career guidance dashboard</p>
-      </div>
-      <form id="login-form" onsubmit="handleLogin(event)">
-       <div class="mb-4">
-        <label class="block text-sm font-medium text-gray-700 mb-1" for="login-name">Full Name</label> <input type="text" id="login-name" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm" placeholder="Enter your full name">
-       </div>
-       <div class="mb-4">
-        <label class="block text-sm font-medium text-gray-700 mb-1" for="login-email">Email Address</label> <input type="email" id="login-email" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm" placeholder="student@university.edu">
-        <p id="email-error" class="text-red-500 text-xs mt-1 hidden">Please enter a valid email address</p>
-       </div>
-       <div class="mb-4 relative">
-        <label class="block text-sm font-medium text-gray-700 mb-1" for="login-password">Password</label> <input type="password" id="login-password" required minlength="6" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm pr-12" placeholder="Min 6 characters"> <button type="button" onclick="togglePassword()" class="absolute right-3 top-9 text-gray-400 hover:text-gray-600"><i data-lucide="eye" class="w-5 h-5" id="eye-icon"></i></button>
-        <p id="pass-error" class="text-red-500 text-xs mt-1 hidden">Password must be at least 6 characters</p>
-       </div>
-       <div class="flex items-center justify-between mb-6">
-        <label class="flex items-center gap-2 text-sm text-gray-600"><input type="checkbox" id="remember-me" class="rounded border-gray-300">Remember Me</label>
-       </div><button type="submit" class="w-full py-3 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition">Login</button>
-      </form>
-      <p class="text-center text-xs text-gray-500 mt-4">Demo: Use any name, valid email, and 6+ char password</p>
-     </div>
+      <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          if (document.getElementById('page-login').classList.contains('hidden') === false) {
+            window.location.href = 'login.html';
+          }
+        });
+      </script>
     </div>
-   </div><!-- DASHBOARD PAGE -->
-   <div id="page-dashboard" class="page hidden pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-    <div class="fade-in">
-     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
-      <div>
-       <h1 class="text-2xl md:text-3xl font-bold text-gray-900">Welcome, <span id="dash-name">Student</span>! 👋</h1>
-       <p class="text-gray-500 mt-1">Here's your career guidance overview</p>
+
+    <!-- DASHBOARD PAGE -->
+    <div id="page-dashboard" class="page hidden pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div class="fade-in">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
+          <div>
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-900">Welcome, <span id="dash-name">Student</span>! 👋</h1>
+            <p class="text-gray-500 mt-1">Here's your career guidance overview</p>
+          </div>
+          <button onclick="navigate('profile')" class="px-4 py-2 bg-purple-100 text-purple-700 rounded-lg font-medium hover:bg-purple-200 transition hidden" id="profile-btn">
+            <i data-lucide="user" class="w-4 h-4 inline mr-2"></i> Profile
+          </button>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          <div class="card-hover bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-xs text-gray-500 uppercase font-medium">Recommended Career</p>
+                <p class="text-lg font-bold text-gray-900 mt-1" id="stat-career">Not Set</p>
+              </div>
+              <div class="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center">
+                <i data-lucide="target" class="w-5 h-5 text-purple-700"></i>
+              </div>
+            </div>
+          </div>
+          <div class="card-hover bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-xs text-gray-500 uppercase font-medium">Skill Score</p>
+                <p class="text-lg font-bold text-gray-900 mt-1" id="stat-skill">0%</p>
+              </div>
+              <div class="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center">
+                <i data-lucide="trending-up" class="w-5 h-5 text-green-600"></i>
+              </div>
+            </div>
+          </div>
+          <div class="card-hover bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-xs text-gray-500 uppercase font-medium">Progress</p>
+                <p class="text-lg font-bold text-gray-900 mt-1" id="stat-progress">0%</p>
+              </div>
+              <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
+                <i data-lucide="activity" class="w-5 h-5 text-blue-600"></i>
+              </div>
+            </div>
+          </div>
+          <div class="card-hover bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-xs text-gray-500 uppercase font-medium">Resume Score</p>
+                <p class="text-lg font-bold text-gray-900 mt-1" id="stat-resume">0/100</p>
+              </div>
+              <div class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center">
+                <i data-lucide="file-text" class="w-5 h-5 text-orange-600"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Access -->
+        <h2 class="text-lg font-bold text-gray-900 mb-4">Quick Access</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+          <button onclick="navigate('career-rec')" class="card-hover bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+            <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center mx-auto mb-2">
+              <i data-lucide="target" class="w-5 h-5 text-purple-700"></i>
+            </div>
+            <p class="text-xs font-medium text-gray-700">Career AI</p>
+          </button>
+          <button onclick="navigate('chatbot')" class="card-hover bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+            <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mx-auto mb-2">
+              <i data-lucide="message-circle" class="w-5 h-5 text-blue-600"></i>
+            </div>
+            <p class="text-xs font-medium text-gray-700">Chatbot</p>
+          </button>
+          <button onclick="navigate('roadmap')" class="card-hover bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+            <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center mx-auto mb-2">
+              <i data-lucide="map" class="w-5 h-5 text-green-600"></i>
+            </div>
+            <p class="text-xs font-medium text-gray-700">Roadmap</p>
+          </button>
+          <button onclick="navigate('skill-gap')" class="card-hover bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+            <div class="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center mx-auto mb-2">
+              <i data-lucide="bar-chart-3" class="w-5 h-5 text-orange-600"></i>
+            </div>
+            <p class="text-xs font-medium text-gray-700">Skill Gap</p>
+          </button>
+          <button onclick="navigate('resources')" class="card-hover bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+            <div class="w-10 h-10 rounded-lg bg-teal-100 flex items-center justify-center mx-auto mb-2">
+              <i data-lucide="book-open" class="w-5 h-5 text-teal-600"></i>
+            </div>
+            <p class="text-xs font-medium text-gray-700">Resources</p>
+          </button>
+          <button onclick="navigate('resume')" class="card-hover bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+            <div class="w-10 h-10 rounded-lg bg-yellow-100 flex items-center justify-center mx-auto mb-2">
+              <i data-lucide="file-text" class="w-5 h-5 text-yellow-600"></i>
+            </div>
+            <p class="text-xs font-medium text-gray-700">Resume</p>
+          </button>
+          <button onclick="navigate('report')" class="card-hover bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center hover:shadow-md transition">
+            <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center mx-auto mb-2">
+              <i data-lucide="clipboard" class="w-5 h-5 text-red-600"></i>
+            </div>
+            <p class="text-xs font-medium text-gray-700">Report</p>
+          </button>
+        </div>
+
+        <!-- Progress Section -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+          <h3 class="font-bold text-gray-900 mb-4">Your Progress</h3>
+          <div class="space-y-4">
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span class="text-gray-600">Skills Completed</span>
+                <span class="font-medium" id="prog-skills">0/10</span>
+              </div>
+              <div class="w-full bg-gray-100 rounded-full h-2">
+                <div id="prog-skills-bar" class="progress-bar h-2 rounded-full bg-purple-600" style="width:0%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span class="text-gray-600">Courses Done</span>
+                <span class="font-medium" id="prog-courses">0/5</span>
+              </div>
+              <div class="w-full bg-gray-100 rounded-full h-2">
+                <div id="prog-courses-bar" class="progress-bar h-2 rounded-full bg-green-500" style="width:0%"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm mb-1">
+                <span class="text-gray-600">Overall Progress</span>
+                <span class="font-medium" id="prog-overall">0%</span>
+              </div>
+              <div class="w-full bg-gray-100 rounded-full h-2">
+                <div id="prog-overall-bar" class="progress-bar h-2 rounded-full bg-blue-500" style="width:0%"></div>
+              </div>
+            </div>
+          </div>
+          <div id="badges-section" class="mt-6 flex flex-wrap gap-2"></div>
+        </div>
       </div>
-      <div class="relative">
-       <input type="text" id="search-input" oninput="handleSearch(this.value)" placeholder="Search careers, skills..." class="pl-10 pr-4 py-2 rounded-xl border border-gray-200 text-sm w-64"> <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3 top-3"></i>
-       <div id="search-results" class="absolute top-full left-0 right-0 bg-white rounded-xl shadow-lg mt-1 hidden z-10 max-h-48 overflow-auto"></div>
-      </div>
-     </div><!-- Stats Cards -->
-     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-      <div class="card-hover bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-       <div class="flex items-center justify-between">
-        <div>
-         <p class="text-xs text-gray-500 uppercase font-medium">Recommended Career</p>
-         <p class="text-lg font-bold text-gray-900 mt-1" id="stat-career">Not Set</p>
-        </div>
-        <div class="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center"><i data-lucide="target" class="w-5 h-5 text-purple-700"></i>
-        </div>
-       </div>
-      </div>
-      <div class="card-hover bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-       <div class="flex items-center justify-between">
-        <div>
-         <p class="text-xs text-gray-500 uppercase font-medium">Skill Score</p>
-         <p class="text-lg font-bold text-gray-900 mt-1" id="stat-skill">0%</p>
-        </div>
-        <div class="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center"><i data-lucide="trending-up" class="w-5 h-5 text-green-600"></i>
-        </div>
-       </div>
-      </div>
-      <div class="card-hover bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-       <div class="flex items-center justify-between">
-        <div>
-         <p class="text-xs text-gray-500 uppercase font-medium">Progress</p>
-         <p class="text-lg font-bold text-gray-900 mt-1" id="stat-progress">0%</p>
-        </div>
-        <div class="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center"><i data-lucide="activity" class="w-5 h-5 text-blue-600"></i>
-        </div>
-       </div>
-      </div>
-      <div class="card-hover bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-       <div class="flex items-center justify-between">
-        <div>
-         <p class="text-xs text-gray-500 uppercase font-medium">Resume Score</p>
-         <p class="text-lg font-bold text-gray-900 mt-1" id="stat-resume">0/100</p>
-        </div>
-        <div class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center"><i data-lucide="file-text" class="w-5 h-5 text-orange-600"></i>
-        </div>
-       </div>
-      </div>
-     </div><!-- Quick Access -->
-     <h2 class="text-lg font-bold text-gray-900 mb-4">Quick Access</h2>
-     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
-      <button onclick="navigate('career-rec')" class="card-hover bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center">
-       <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center mx-auto mb-2"><i data-lucide="target" class="w-5 h-5 text-purple-700"></i>
-       </div><p class="text-xs font-medium text-gray-700">Career AI</p></button> <button onclick="navigate('chatbot')" class="card-hover bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center">
-       <div class="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mx-auto mb-2"><i data-lucide="message-circle" class="w-5 h-5 text-blue-600"></i>
-       </div><p class="text-xs font-medium text-gray-700">Chatbot</p></button> <button onclick="navigate('roadmap')" class="card-hover bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center">
-       <div class="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center mx-auto mb-2"><i data-lucide="map" class="w-5 h-5 text-green-600"></i>
-       </div><p class="text-xs font-medium text-gray-700">Roadmap</p></button> <button onclick="navigate('skill-gap')" class="card-hover bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center">
-       <div class="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center mx-auto mb-2"><i data-lucide="bar-chart-3" class="w-5 h-5 text-orange-600"></i>
-       </div><p class="text-xs font-medium text-gray-700">Skill Gap</p></button> <button onclick="navigate('resources')" class="card-hover bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center">
-       <div class="w-10 h-10 rounded-lg bg-teal-100 flex items-center justify-center mx-auto mb-2"><i data-lucide="book-open" class="w-5 h-5 text-teal-600"></i>
-       </div><p class="text-xs font-medium text-gray-700">Resources</p></button> <button onclick="navigate('compare')" class="card-hover bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center">
-       <div class="w-10 h-10 rounded-lg bg-pink-100 flex items-center justify-center mx-auto mb-2"><i data-lucide="git-compare" class="w-5 h-5 text-pink-600"></i>
-       </div><p class="text-xs font-medium text-gray-700">Compare</p></button> <button onclick="navigate('resume')" class="card-hover bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center">
-       <div class="w-10 h-10 rounded-lg bg-yellow-100 flex items-center justify-center mx-auto mb-2"><i data-lucide="file-text" class="w-5 h-5 text-yellow-600"></i>
-       </div><p class="text-xs font-medium text-gray-700">Resume</p></button> <button onclick="navigate('report')" class="card-hover bg-white rounded-xl p-4 shadow-sm border border-gray-100 text-center">
-       <div class="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center mx-auto mb-2"><i data-lucide="clipboard" class="w-5 h-5 text-red-600"></i>
-       </div><p class="text-xs font-medium text-gray-700">Report</p></button>
-     </div><!-- Progress Section -->
-     <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-      <h3 class="font-bold text-gray-900 mb-4">Your Progress</h3>
-      <div id="progress-section">
-       <div class="mb-4">
-        <div class="flex justify-between text-sm mb-1"><span class="text-gray-600">Skills Completed</span><span class="font-medium" id="prog-skills">0/10</span>
-        </div>
-        <div class="w-full bg-gray-100 rounded-full h-2">
-         <div id="prog-skills-bar" class="progress-bar h-2 rounded-full bg-purple-600" style="width:0%"></div>
-        </div>
-       </div>
-       <div class="mb-4">
-        <div class="flex justify-between text-sm mb-1"><span class="text-gray-600">Courses Done</span><span class="font-medium" id="prog-courses">0/5</span>
-        </div>
-        <div class="w-full bg-gray-100 rounded-full h-2">
-         <div id="prog-courses-bar" class="progress-bar h-2 rounded-full bg-green-500" style="width:0%"></div>
-        </div>
-       </div>
-       <div>
-        <div class="flex justify-between text-sm mb-1"><span class="text-gray-600">Overall Progress</span><span class="font-medium" id="prog-overall">0%</span>
-        </div>
-        <div class="w-full bg-gray-100 rounded-full h-2">
-         <div id="prog-overall-bar" class="progress-bar h-2 rounded-full bg-blue-500" style="width:0%"></div>
-        </div>
-       </div>
-      </div>
-      <div id="badges-section" class="mt-6 flex flex-wrap gap-2"></div>
-     </div>
     </div>
-   </div><!-- CAREER RECOMMENDATION PAGE -->
-   <div id="page-career-rec" class="page hidden pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-    <div class="fade-in">
-     <h1 class="text-2xl md:text-3xl font-bold gradient-text mb-2">AI Career Recommendation</h1>
-     <p class="text-gray-500 mb-8">Tell us about yourself and we'll find your ideal career</p>
-     <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100 mb-8">
-      <form id="career-form" onsubmit="generateCareerRec(event)">
-       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-         <label class="block text-sm font-medium text-gray-700 mb-2" for="career-interests">Your Interests</label> <select id="career-interests" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm"> <option value="">Select Interest</option> <option value="programming">Programming &amp; Coding</option> <option value="data">Data &amp; Analytics</option> <option value="security">Cybersecurity</option> <option value="ai">Artificial Intelligence</option> <option value="web">Web &amp; App Development</option> <option value="medical">Medical &amp; Health</option> <option value="business">Business &amp; Finance</option> <option value="marketing">Digital Marketing</option> <option value="design">Design &amp; Creativity</option> </select>
+
+    <!-- CAREER RECOMMENDATION PAGE -->
+    <div id="page-career-rec" class="page hidden pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+      <div class="fade-in">
+        <h1 class="text-2xl md:text-3xl font-bold gradient-text mb-2">AI Career Recommendation</h1>
+        <p class="text-gray-500 mb-8">Tell us about yourself and we'll find your ideal career</p>
+        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100 mb-8">
+          <form id="career-form" onsubmit="generateCareerRec(event)">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Your Interests</label>
+                <select id="career-interests" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-purple-700 transition">
+                  <option value="">Select your main interest</option>
+                  <option value="programming">Programming & Development</option>
+                  <option value="data">Data & Analytics</option>
+                  <option value="ai">AI & Machine Learning</option>
+                  <option value="security">Cybersecurity</option>
+                  <option value="web">Web & Frontend</option>
+                  <option value="business">Business & Management</option>
+                  <option value="marketing">Digital Marketing</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Your Education Level</label>
+                <select id="career-education" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-purple-700 transition">
+                  <option value="">Select your education level</option>
+                  <option value="high-school">High School</option>
+                  <option value="associate">Associate Degree</option>
+                  <option value="bachelor">Bachelor's Degree</option>
+                  <option value="master">Master's Degree</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Current Skills (comma separated)</label>
+                <input type="text" id="career-skills" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-purple-700 transition" placeholder="e.g., JavaScript, Python, SQL">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Experience Level</label>
+                <select id="career-experience" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-purple-700 transition">
+                  <option value="">Select your experience</option>
+                  <option value="beginner">Beginner (0-1 years)</option>
+                  <option value="intermediate">Intermediate (1-3 years)</option>
+                  <option value="advanced">Advanced (3+ years)</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="mt-6 px-8 py-3 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition flex items-center gap-2">
+              <i data-lucide="sparkles" class="w-5 h-5"></i> Get Recommendations
+            </button>
+          </form>
         </div>
-        <div>
-         <label class="block text-sm font-medium text-gray-700 mb-2" for="career-subjects">Favorite Subjects</label> <select id="career-subjects" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm"> <option value="">Select Subject</option> <option value="math">Mathematics</option> <option value="physics">Physics</option> <option value="biology">Biology</option> <option value="cs">Computer Science</option> <option value="english">English &amp; Communication</option> <option value="economics">Economics</option> <option value="art">Art &amp; Design</option> </select>
-        </div>
-        <div>
-         <label class="block text-sm font-medium text-gray-700 mb-2" for="career-skills">Current Skills</label> <input type="text" id="career-skills" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm" placeholder="e.g., Python, HTML, Communication">
-        </div>
-        <div>
-         <label class="block text-sm font-medium text-gray-700 mb-2" for="career-education">Education Level</label> <select id="career-education" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm"> <option value="">Select Level</option> <option value="intermediate">Intermediate / A-Levels</option> <option value="bachelor">Bachelor's (In Progress)</option> <option value="bachelor-done">Bachelor's (Completed)</option> <option value="master">Master's</option> </select>
-        </div>
-       </div><button type="submit" class="mt-6 px-8 py-3 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition flex items-center gap-2"> <i data-lucide="sparkles" class="w-5 h-5"></i> Generate Recommendations </button>
-      </form>
-     </div>
-     <div id="career-results" class="hidden space-y-4"></div>
-    </div>
-   </div><!-- CHATBOT PAGE -->
-   <div id="page-chatbot" class="page hidden pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
-    <div class="fade-in">
-     <h1 class="text-2xl font-bold gradient-text mb-2">AI Career Chatbot</h1>
-     <p class="text-gray-500 mb-6">Ask me anything about careers, skills, or education</p>
-     <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden" style="height: 500px; display: flex; flex-direction: column;">
-      <div id="chat-messages" class="flex-1 overflow-auto p-4 space-y-3">
-       <div class="chat-bubble flex gap-3">
-        <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center flex-shrink-0"><i data-lucide="bot" class="w-4 h-4 text-white"></i>
-        </div>
-        <div class="bg-purple-50 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[80%]">
-         <p class="text-sm text-gray-700">Hello! I'm your AI Career Advisor. Ask me about career paths, required skills, salaries, or educational guidance. How can I help you today?</p>
-        </div>
-       </div>
+        <div id="career-results" class="hidden space-y-4"></div>
       </div>
-      <div class="border-t p-4">
-       <form onsubmit="sendChatMessage(event)" class="flex gap-2">
-        <input type="text" id="chat-input" placeholder="Ask a career question..." class="flex-1 px-4 py-3 rounded-xl border border-gray-200 text-sm"> <button type="submit" class="px-4 py-3 gradient-bg text-white rounded-xl hover:opacity-90 transition"><i data-lucide="send" class="w-5 h-5"></i></button>
-       </form>
+    </div>
+
+    <!-- CHATBOT PAGE -->
+    <div id="page-chatbot" class="page hidden pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
+      <div class="fade-in">
+        <h1 class="text-2xl font-bold gradient-text mb-2">AI Career Chatbot</h1>
+        <p class="text-gray-500 mb-6">Ask me anything about careers, skills, or education</p>
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden" style="height: 500px; display: flex; flex-direction: column;">
+          <div id="chat-messages" class="flex-1 overflow-auto p-4 space-y-3">
+            <div class="chat-bubble flex gap-3">
+              <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center flex-shrink-0">
+                <i data-lucide="bot" class="w-4 h-4 text-white"></i>
+              </div>
+              <div class="bg-purple-50 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[80%]">
+                <p class="text-sm text-gray-700">Hello! I'm your AI Career Advisor. Ask me about career paths, required skills, salaries, or educational guidance. How can I help you today?</p>
+              </div>
+            </div>
+          </div>
+          <div class="border-t p-4">
+            <form onsubmit="sendChatMessage(event)" class="flex gap-2">
+              <input type="text" id="chat-input" placeholder="Ask a career question..." class="flex-1 px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-purple-700 transition">
+              <button type="submit" class="px-4 py-3 gradient-bg text-white rounded-xl hover:opacity-90 transition">
+                <i data-lucide="send" class="w-5 h-5"></i>
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
-     </div>
-     <div class="mt-4 flex flex-wrap gap-2">
-      <button onclick="askQuestion('What career suits programming skills?')" class="px-3 py-2 bg-purple-50 text-purple-700 rounded-lg text-xs font-medium hover:bg-purple-100 transition">Programming careers?</button> <button onclick="askQuestion('What is the salary for a data scientist?')" class="px-3 py-2 bg-purple-50 text-purple-700 rounded-lg text-xs font-medium hover:bg-purple-100 transition">Data Scientist salary?</button> <button onclick="askQuestion('How to become a web developer?')" class="px-3 py-2 bg-purple-50 text-purple-700 rounded-lg text-xs font-medium hover:bg-purple-100 transition">Web developer path?</button> <button onclick="askQuestion('What degree is best for AI?')" class="px-3 py-2 bg-purple-50 text-purple-700 rounded-lg text-xs font-medium hover:bg-purple-100 transition">Best degree for AI?</button>
-     </div>
     </div>
-   </div><!-- ROADMAP PAGE -->
-   <div id="page-roadmap" class="page hidden pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-    <div class="fade-in">
-     <h1 class="text-2xl font-bold gradient-text mb-2">Career Roadmap Generator</h1>
-     <p class="text-gray-500 mb-6">Get a step-by-step plan from beginner to professional</p>
-     <div class="mb-6">
-      <label class="block text-sm font-medium text-gray-700 mb-2">Select Career Path</label> <select id="roadmap-select" onchange="generateRoadmap()" class="w-full max-w-sm px-4 py-3 rounded-xl border border-gray-200 text-sm"> <option value="">Choose a career...</option> <option value="software-engineering">Software Engineering</option> <option value="data-science">Data Science</option> <option value="web-development">Web Development</option> <option value="cybersecurity">Cyber Security</option> <option value="ai-ml">AI &amp; Machine Learning</option> <option value="digital-marketing">Digital Marketing</option> </select>
-     </div>
-     <div id="roadmap-content" class="space-y-4"></div>
-    </div>
-   </div><!-- SKILL GAP PAGE -->
-   <div id="page-skill-gap" class="page hidden pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-    <div class="fade-in">
-     <h1 class="text-2xl font-bold gradient-text mb-2">Skill Gap Analysis</h1>
-     <p class="text-gray-500 mb-6">Find out what skills you need to develop</p>
-     <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 mb-6">
-      <form onsubmit="analyzeSkillGap(event)">
-       <div class="mb-4">
-        <label class="block text-sm font-medium text-gray-700 mb-2">Your Current Skills (comma separated)</label> <input type="text" id="current-skills" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm" placeholder="e.g., HTML, CSS, JavaScript, Python">
-       </div>
-       <div class="mb-4">
-        <label class="block text-sm font-medium text-gray-700 mb-2">Desired Career</label> <select id="desired-career" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm"> <option value="">Select career...</option> <option value="software-engineering">Software Engineering</option> <option value="data-science">Data Science</option> <option value="web-development">Web Development</option> <option value="cybersecurity">Cyber Security</option> <option value="ai-ml">AI &amp; Machine Learning</option> </select>
-       </div><button type="submit" class="px-6 py-3 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition">Analyze Skills</button>
-      </form>
-     </div>
-     <div id="skill-gap-results" class="hidden"></div>
-    </div>
-   </div><!-- RESOURCES PAGE -->
-   <div id="page-resources" class="page hidden pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-    <div class="fade-in">
-     <h1 class="text-2xl font-bold gradient-text mb-2">Learning Resources</h1>
-     <p class="text-gray-500 mb-6">Curated resources to boost your career skills</p>
-     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="resources-grid">
-     </div>
-    </div>
-   </div><!-- COMPARE PAGE -->
-   <div id="page-compare" class="page hidden pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-    <div class="fade-in">
-     <h1 class="text-2xl font-bold gradient-text mb-2">Career Comparison Tool</h1>
-     <p class="text-gray-500 mb-6">Compare two careers side by side</p>
-     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-      <div>
-       <label class="block text-sm font-medium text-gray-700 mb-2">Career 1</label> <select id="compare-career1" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm"> <option value="software-engineering">Software Engineering</option> <option value="data-science">Data Science</option> <option value="web-development">Web Development</option> <option value="cybersecurity">Cyber Security</option> <option value="ai-ml">AI &amp; Machine Learning</option> <option value="digital-marketing">Digital Marketing</option> </select>
+
+    <!-- ROADMAP PAGE -->
+    <div id="page-roadmap" class="page hidden pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+      <div class="fade-in">
+        <h1 class="text-2xl font-bold gradient-text mb-2">Career Roadmap Generator</h1>
+        <p class="text-gray-500 mb-6">Get a step-by-step plan from beginner to professional</p>
+        <div class="mb-6">
+          <label class="block text-sm font-medium text-gray-700 mb-2">Select Career Path</label>
+          <select id="roadmap-select" onchange="generateRoadmap()" class="w-full max-w-sm px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-purple-700 transition">
+            <option value="">Choose a career path...</option>
+            <option value="software-engineering">Software Engineering</option>
+            <option value="data-science">Data Science</option>
+            <option value="web-development">Web Development</option>
+            <option value="cybersecurity">Cybersecurity</option>
+            <option value="ai-ml">AI & Machine Learning</option>
+          </select>
+        </div>
+        <div id="roadmap-content" class="space-y-4"></div>
       </div>
-      <div>
-       <label class="block text-sm font-medium text-gray-700 mb-2">Career 2</label> <select id="compare-career2" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm"> <option value="data-science">Data Science</option> <option value="software-engineering">Software Engineering</option> <option value="web-development">Web Development</option> <option value="cybersecurity">Cyber Security</option> <option value="ai-ml">AI &amp; Machine Learning</option> <option value="digital-marketing">Digital Marketing</option> </select>
+    </div>
+
+    <!-- SKILL GAP PAGE -->
+    <div id="page-skill-gap" class="page hidden pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+      <div class="fade-in">
+        <h1 class="text-2xl font-bold gradient-text mb-2">Skill Gap Analysis</h1>
+        <p class="text-gray-500 mb-6">Find out what skills you need to develop</p>
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 mb-6">
+          <form onsubmit="analyzeSkillGap(event)">
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Your Current Skills (comma separated)</label>
+              <input type="text" id="current-skills" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-purple-700 transition" placeholder="e.g., JavaScript, React, Node.js">
+            </div>
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Desired Career</label>
+              <select id="desired-career" required class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-purple-700 transition">
+                <option value="">Select your target career</option>
+                <option value="software-engineering">Software Engineering</option>
+                <option value="data-science">Data Science</option>
+                <option value="web-development">Web Development</option>
+                <option value="cybersecurity">Cybersecurity</option>
+                <option value="ai-ml">AI & Machine Learning</option>
+              </select>
+            </div>
+            <button type="submit" class="px-6 py-3 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition">Analyze Skills</button>
+          </form>
+        </div>
+        <div id="skill-gap-results" class="hidden"></div>
       </div>
-     </div><button onclick="compareCarers()" class="px-6 py-3 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition mb-6">Compare Now</button>
-     <div id="compare-results" class="hidden"></div>
     </div>
-   </div><!-- RESUME PAGE -->
-   <div id="page-resume" class="page hidden pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-    <div class="fade-in">
-     <h1 class="text-2xl font-bold gradient-text mb-2">Resume Checker</h1>
-     <p class="text-gray-500 mb-6">Paste your resume text and get it analyzed</p>
-     <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 mb-6">
-      <label class="block text-sm font-medium text-gray-700 mb-2">Paste Your Resume Text</label> <textarea id="resume-text" rows="8" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm" placeholder="Paste your full resume text here..."></textarea> <button onclick="analyzeResume()" class="mt-4 px-6 py-3 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition">Analyze Resume</button>
-     </div>
-     <div id="resume-results" class="hidden"></div>
-    </div>
-   </div><!-- REPORT PAGE -->
-   <div id="page-report" class="page hidden pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-    <div class="fade-in">
-     <h1 class="text-2xl font-bold gradient-text mb-2">Final Recommendation Report</h1>
-     <p class="text-gray-500 mb-6">Your complete career guidance summary</p>
-     <div id="report-content" class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
-      <div class="text-center mb-6 pb-6 border-b border-gray-100">
-       <h2 class="text-xl font-bold text-purple-900">AI Career Guidance Report</h2>
-       <p class="text-gray-500 text-sm mt-1">Generated on <span id="report-date"></span></p>
+
+    <!-- RESOURCES PAGE -->
+    <div id="page-resources" class="page hidden pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+      <div class="fade-in">
+        <h1 class="text-2xl font-bold gradient-text mb-2">Learning Resources</h1>
+        <p class="text-gray-500 mb-6">Curated resources to boost your career skills</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="resources-grid"></div>
       </div>
-      <div id="report-body"></div>
-     </div>
-     <div class="flex gap-4 mt-6">
-      <button onclick="printReport()" class="px-6 py-3 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition flex items-center gap-2"><i data-lucide="printer" class="w-5 h-5"></i> Print Report</button> <button onclick="downloadReport()" class="px-6 py-3 border-2 border-purple-700 text-purple-700 font-semibold rounded-xl hover:bg-purple-50 transition flex items-center gap-2"><i data-lucide="download" class="w-5 h-5"></i> Download PDF</button>
-     </div>
     </div>
-   </div>
-  </div><!-- end #app -->
+
+    <!-- RESUME PAGE -->
+    <div id="page-resume" class="page hidden pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+      <div class="fade-in">
+        <h1 class="text-2xl font-bold gradient-text mb-2">Resume Checker</h1>
+        <p class="text-gray-500 mb-6">Paste your resume text and get it analyzed</p>
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 mb-6">
+          <label class="block text-sm font-medium text-gray-700 mb-2">Paste Your Resume Text</label>
+          <textarea id="resume-text" rows="8" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-purple-700 transition" placeholder="Paste your resume content here..."></textarea>
+          <button onclick="analyzeResume()" class="mt-4 px-6 py-3 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition">Analyze Resume</button>
+        </div>
+        <div id="resume-results" class="hidden"></div>
+      </div>
+    </div>
+
+    <!-- REPORT PAGE -->
+    <div id="page-report" class="page hidden pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+      <div class="fade-in">
+        <h1 class="text-2xl font-bold gradient-text mb-2">Final Recommendation Report</h1>
+        <p class="text-gray-500 mb-6">Your complete career guidance summary</p>
+        <div id="report-content" class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+          <div class="text-center mb-6 pb-6 border-b border-gray-100">
+            <h2 class="text-xl font-bold text-purple-900">AI Career Guidance Report</h2>
+            <p class="text-gray-500 text-sm mt-1">Generated on <span id="report-date"></span></p>
+          </div>
+          <div id="report-body"></div>
+        </div>
+        <div class="flex gap-4 mt-6">
+          <button onclick="printReport()" class="px-6 py-3 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition flex items-center gap-2">
+            <i data-lucide="printer" class="w-5 h-5"></i> Print Report
+          </button>
+          <button onclick="downloadReport()" class="px-6 py-3 border-2 border-purple-700 text-purple-700 font-semibold rounded-xl hover:bg-purple-50 transition flex items-center gap-2">
+            <i data-lucide="download" class="w-5 h-5"></i> Download
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROFILE PAGE -->
+    <div id="page-profile" class="page hidden pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+      <div class="fade-in">
+        <h1 class="text-2xl font-bold gradient-text mb-2">My Profile</h1>
+        <p class="text-gray-500 mb-8">Manage your account information</p>
+        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100">
+          <form id="profile-form" onsubmit="handleProfileUpdate(event)">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                <input type="text" id="profile-fullname" readonly class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm bg-gray-50">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <input type="email" id="profile-email" readonly class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm bg-gray-50">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Education Level</label>
+                <input type="text" id="profile-education" readonly class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm bg-gray-50">
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Interested Careers</label>
+                <input type="text" id="profile-careers" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-purple-700 transition" placeholder="e.g., Software Engineering, Data Science">
+              </div>
+            </div>
+            <button type="submit" class="px-6 py-3 gradient-bg text-white font-semibold rounded-xl hover:opacity-90 transition">Save Changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
-// ==================== DATA & STATE ====================
-let currentUser = null;
-let userData = {};
+    // ==================== DATA & STATE ====================
+    let currentUser = null;
+    let userData = {};
 
-const careerData = {
-  'software-engineering': { name: 'Software Engineering', salary: '$80,000 - $150,000', demand: 'Very High', growth: '25%', difficulty: 'High', education: "Bachelor's in CS/SE", skills: ['Programming', 'Data Structures', 'Algorithms', 'System Design', 'Version Control', 'Testing', 'Databases', 'APIs'], description: 'Design, develop, and maintain software systems and applications.' },
-  'data-science': { name: 'Data Science', salary: '$90,000 - $160,000', demand: 'Very High', growth: '35%', difficulty: 'High', education: "Bachelor's/Master's in CS/Stats", skills: ['Python', 'Statistics', 'Machine Learning', 'SQL', 'Data Visualization', 'Deep Learning', 'Big Data', 'R'], description: 'Extract insights from data using statistical methods and machine learning.' },
-  'web-development': { name: 'Web Development', salary: '$60,000 - $130,000', demand: 'High', growth: '23%', difficulty: 'Medium', education: "Bachelor's in CS or Self-taught", skills: ['HTML', 'CSS', 'JavaScript', 'React/Vue', 'Node.js', 'Databases', 'Git', 'APIs'], description: 'Build and maintain websites and web applications.' },
-  'cybersecurity': { name: 'Cyber Security', salary: '$85,000 - $155,000', demand: 'Very High', growth: '33%', difficulty: 'High', education: "Bachelor's in CS/Cybersecurity", skills: ['Networking', 'Linux', 'Ethical Hacking', 'Cryptography', 'SIEM', 'Incident Response', 'Firewalls', 'Risk Assessment'], description: 'Protect systems and networks from digital attacks and threats.' },
-  'ai-ml': { name: 'AI & Machine Learning', salary: '$100,000 - $180,000', demand: 'Very High', growth: '40%', difficulty: 'Very High', education: "Master's/PhD preferred", skills: ['Python', 'Mathematics', 'Deep Learning', 'TensorFlow/PyTorch', 'NLP', 'Computer Vision', 'Statistics', 'Research'], description: 'Develop intelligent systems that learn and make decisions.' },
-  'digital-marketing': { name: 'Digital Marketing', salary: '$45,000 - $100,000', demand: 'High', growth: '20%', difficulty: 'Medium', education: "Bachelor's in Marketing/Business", skills: ['SEO', 'Social Media', 'Content Creation', 'Google Ads', 'Analytics', 'Email Marketing', 'Copywriting', 'Strategy'], description: 'Promote brands and products through digital channels.' }
-};
+    const careerData = {
+      'software-engineering': {
+        name: 'Software Engineering',
+        salary: '$80,000 - $150,000',
+        demand: 'Very High',
+        growth: '25%',
+        difficulty: 'High',
+        education: "Bachelor's in CS/SE",
+        skills: ['Programming', 'Data Structures', 'Algorithms', 'Git', 'APIs', 'Databases']
+      },
+      'data-science': {
+        name: 'Data Science',
+        salary: '$90,000 - $160,000',
+        demand: 'Very High',
+        growth: '35%',
+        difficulty: 'High',
+        education: "Bachelor's/Master's in CS/Stats",
+        skills: ['Python', 'Statistics', 'Machine Learning', 'SQL', 'Data Visualization']
+      },
+      'web-development': {
+        name: 'Web Development',
+        salary: '$60,000 - $130,000',
+        demand: 'High',
+        growth: '23%',
+        difficulty: 'Medium',
+        education: "Bachelor's in CS or Self-taught",
+        skills: ['HTML', 'CSS', 'JavaScript', 'React', 'Node.js', 'Databases']
+      },
+      'cybersecurity': {
+        name: 'Cyber Security',
+        salary: '$85,000 - $155,000',
+        demand: 'Very High',
+        growth: '33%',
+        difficulty: 'High',
+        education: "Bachelor's in CS/Cybersecurity",
+        skills: ['Networking', 'Linux', 'Cryptography', 'Ethical Hacking', 'Security Tools']
+      },
+      'ai-ml': {
+        name: 'AI & Machine Learning',
+        salary: '$100,000 - $180,000',
+        demand: 'Very High',
+        growth: '40%',
+        difficulty: 'Very High',
+        education: "Master's/PhD preferred",
+        skills: ['Python', 'Math', 'Machine Learning', 'Deep Learning', 'TensorFlow']
+      }
+    };
 
-const roadmapData = {
-  'software-engineering': [
-    { level: 'Beginner', steps: ['Learn a programming language (Python/Java)', 'Understand basic algorithms', 'Learn Git & GitHub', 'Build simple programs'] },
-    { level: 'Intermediate', steps: ['Master Data Structures & Algorithms', 'Learn Object-Oriented Programming', 'Understand Databases (SQL)', 'Build medium-scale projects'] },
-    { level: 'Advanced', steps: ['Learn System Design', 'Master Design Patterns', 'Contribute to Open Source', 'Learn Cloud Services (AWS/Azure)'] },
-    { level: 'Professional', steps: ['Apply for internships', 'Build portfolio', 'Prepare for coding interviews', 'Get hired as Software Engineer'] }
-  ],
-  'data-science': [
-    { level: 'Beginner', steps: ['Learn Python basics', 'Learn Statistics fundamentals', 'Learn SQL queries', 'Explore datasets on Kaggle'] },
-    { level: 'Intermediate', steps: ['Master Pandas & NumPy', 'Learn Data Visualization (Matplotlib)', 'Understand Machine Learning basics', 'Complete ML projects'] },
-    { level: 'Advanced', steps: ['Deep Learning (TensorFlow/PyTorch)', 'Natural Language Processing', 'Big Data tools (Spark)', 'Advanced statistics'] },
-    { level: 'Professional', steps: ['Build data science portfolio', 'Compete in Kaggle competitions', 'Apply for data science roles', 'Publish research papers'] }
-  ],
-  'web-development': [
-    { level: 'Beginner', steps: ['Learn HTML & CSS', 'Learn JavaScript basics', 'Build static websites', 'Learn responsive design'] },
-    { level: 'Intermediate', steps: ['Learn React or Vue.js', 'Learn Node.js & Express', 'Understand databases (MongoDB/SQL)', 'Build full-stack projects'] },
-    { level: 'Advanced', steps: ['Learn TypeScript', 'Master state management', 'Learn DevOps basics', 'Performance optimization'] },
-    { level: 'Professional', steps: ['Build portfolio website', 'Freelance or internship', 'Learn cloud deployment', 'Get hired as Full Stack Developer'] }
-  ],
-  'cybersecurity': [
-    { level: 'Beginner', steps: ['Learn networking fundamentals', 'Understand Linux basics', 'Learn about common threats', 'Get CompTIA Security+ certified'] },
-    { level: 'Intermediate', steps: ['Learn ethical hacking', 'Practice on TryHackMe/HackTheBox', 'Understand cryptography', 'Learn SIEM tools'] },
-    { level: 'Advanced', steps: ['Master penetration testing', 'Learn incident response', 'Cloud security', 'Malware analysis'] },
-    { level: 'Professional', steps: ['Get CEH/OSCP certification', 'Build security portfolio', 'Apply for security roles', 'Specialize in a domain'] }
-  ],
-  'ai-ml': [
-    { level: 'Beginner', steps: ['Master Python programming', 'Learn Linear Algebra & Calculus', 'Understand basic statistics', 'Complete ML online course'] },
-    { level: 'Intermediate', steps: ['Implement ML algorithms from scratch', 'Learn TensorFlow/PyTorch', 'Work on classification/regression projects', 'Learn data preprocessing'] },
-    { level: 'Advanced', steps: ['Deep Learning architectures (CNN, RNN, Transformers)', 'NLP and Computer Vision', 'Reinforcement Learning', 'Read research papers'] },
-    { level: 'Professional', steps: ['Publish ML research', 'Contribute to AI open source', 'Build AI products', 'Apply for ML Engineer roles'] }
-  ],
-  'digital-marketing': [
-    { level: 'Beginner', steps: ['Learn SEO fundamentals', 'Create social media accounts', 'Learn content writing', 'Understand Google Analytics'] },
-    { level: 'Intermediate', steps: ['Master Google Ads', 'Learn Facebook/Instagram ads', 'Email marketing campaigns', 'Build a personal brand'] },
-    { level: 'Advanced', steps: ['Marketing automation', 'Conversion optimization', 'Advanced analytics', 'Influencer marketing'] },
-    { level: 'Professional', steps: ['Get Google certifications', 'Build client portfolio', 'Freelance or agency work', 'Specialize in a niche'] }
-  ]
-};
+    const roadmapData = {
+      'software-engineering': [
+        { level: 'Beginner', steps: ['Learn a programming language (Python/Java)', 'Understand basic algorithms', 'Learn Git & GitHub', 'Build simple programs'] },
+        { level: 'Intermediate', steps: ['Master Data Structures & Algorithms', 'Learn OOP', 'Understand Databases (SQL)', 'Build medium-scale projects'] },
+        { level: 'Advanced', steps: ['Learn System Design', 'Master Design Patterns', 'Contribute to Open Source', 'Learn Cloud Services'] },
+        { level: 'Professional', steps: ['Apply for internships', 'Build portfolio', 'Prepare for interviews', 'Get hired as Software Engineer'] }
+      ],
+      'data-science': [
+        { level: 'Beginner', steps: ['Learn Python basics', 'Learn Statistics fundamentals', 'Learn SQL queries', 'Explore datasets on Kaggle'] },
+        { level: 'Intermediate', steps: ['Master Pandas & NumPy', 'Learn Data Visualization', 'Understand ML basics', 'Complete ML projects'] },
+        { level: 'Advanced', steps: ['Deep Learning', 'NLP and Computer Vision', 'Big Data tools', 'Advanced statistics'] },
+        { level: 'Professional', steps: ['Build data science portfolio', 'Kaggle competitions', 'Apply for roles', 'Publish papers'] }
+      ],
+      'web-development': [
+        { level: 'Beginner', steps: ['Learn HTML & CSS', 'Learn JavaScript basics', 'Build static websites', 'Learn responsive design'] },
+        { level: 'Intermediate', steps: ['Learn React or Vue.js', 'Learn Node.js & Express', 'Understand databases', 'Build full-stack projects'] },
+        { level: 'Advanced', steps: ['Learn TypeScript', 'Master state management', 'Learn DevOps basics', 'Performance optimization'] },
+        { level: 'Professional', steps: ['Build portfolio website', 'Freelance work', 'Learn deployment', 'Get hired as Developer'] }
+      ],
+      'cybersecurity': [
+        { level: 'Beginner', steps: ['Learn networking', 'Understand Linux basics', 'Learn common threats', 'Get Security+ certified'] },
+        { level: 'Intermediate', steps: ['Learn ethical hacking', 'Practice on TryHackMe', 'Understand cryptography', 'Learn SIEM tools'] },
+        { level: 'Advanced', steps: ['Master penetration testing', 'Learn incident response', 'Cloud security', 'Malware analysis'] },
+        { level: 'Professional', steps: ['Get CEH/OSCP cert', 'Build security portfolio', 'Apply for roles', 'Specialize'] }
+      ],
+      'ai-ml': [
+        { level: 'Beginner', steps: ['Master Python', 'Learn Linear Algebra', 'Learn Statistics', 'Complete ML course'] },
+        { level: 'Intermediate', steps: ['Implement ML algorithms', 'Learn TensorFlow/PyTorch', 'Work on projects', 'Learn preprocessing'] },
+        { level: 'Advanced', steps: ['Deep Learning architectures', 'NLP and Vision', 'Reinforcement Learning', 'Read papers'] },
+        { level: 'Professional', steps: ['Publish ML research', 'Contribute to open source', 'Build AI products', 'Apply for ML roles'] }
+      ]
+    };
 
-const chatbotKB = [
-  { keywords: ['programming', 'coding', 'programmer', 'coder'], response: 'Programming skills open doors to careers like Software Engineering, Web Development, AI/ML, and Data Science. Popular languages to start with: Python, JavaScript, Java. I recommend starting with Python for its simplicity and versatility.' },
-  { keywords: ['salary', 'pay', 'earn', 'income', 'money'], response: 'Salaries vary by field:\n• Software Engineer: $80K-$150K\n• Data Scientist: $90K-$160K\n• AI/ML Engineer: $100K-$180K\n• Web Developer: $60K-$130K\n• Cyber Security: $85K-$155K\n• Digital Marketing: $45K-$100K\nThese increase with experience and location.' },
-  { keywords: ['data science', 'data scientist', 'data'], response: 'Data Science is one of the hottest fields! You need: Python, Statistics, Machine Learning, SQL, and Data Visualization skills. A strong math background helps. Start with Python and statistics courses, then move to ML. Kaggle is great for practice.' },
-  { keywords: ['web', 'website', 'frontend', 'backend', 'fullstack'], response: 'Web Development has 3 paths:\n• Frontend: HTML, CSS, JavaScript, React\n• Backend: Node.js, Python, Databases\n• Full Stack: Both frontend + backend\nStart with HTML/CSS/JS, then learn a framework. You can be job-ready in 6-12 months with dedicated practice.' },
-  { keywords: ['cyber', 'security', 'hacking', 'ethical'], response: 'Cybersecurity is in high demand! Start with networking basics (CompTIA Network+), then move to security concepts (Security+). Practice on platforms like TryHackMe and HackTheBox. CEH and OSCP are valuable certifications.' },
-  { keywords: ['ai', 'artificial intelligence', 'machine learning', 'ml', 'deep learning'], response: 'AI/ML is the future! Requirements:\n• Strong math (Linear Algebra, Calculus, Statistics)\n• Python programming\n• Machine Learning frameworks (TensorFlow/PyTorch)\n• Research mindset\nStart with Andrew Ng\'s ML course on Coursera. A Master\'s degree is preferred but not mandatory.' },
-  { keywords: ['degree', 'education', 'university', 'college', 'study'], response: 'For tech careers, a BS in Computer Science is most versatile. However, many successful developers are self-taught. Key degrees:\n• CS/SE for programming roles\n• Statistics/Math for Data Science\n• IT/CS for Cybersecurity\nOnline certifications from Google, AWS, and Coursera also carry weight.' },
-  { keywords: ['roadmap', 'path', 'steps', 'how to', 'guide', 'start'], response: 'I recommend this general path:\n1. Choose a field that excites you\n2. Learn fundamentals (3-6 months)\n3. Build projects (3-6 months)\n4. Create a portfolio\n5. Get certifications\n6. Apply for internships\n7. Network on LinkedIn\nUse our Roadmap Generator for a detailed career-specific plan!' },
-  { keywords: ['internship', 'job', 'hire', 'career', 'work'], response: 'To land your first tech job:\n1. Build 3-5 strong projects\n2. Create a GitHub portfolio\n3. Make a professional LinkedIn\n4. Apply to internships early\n5. Practice coding interviews (LeetCode)\n6. Network at tech events\n7. Tailor your resume for each role\nStart applying 6 months before graduation!' },
-  { keywords: ['marketing', 'digital marketing', 'seo', 'social media'], response: 'Digital Marketing careers include SEO, Social Media, Content Marketing, PPC, and Email Marketing. Start by:\n1. Learning SEO basics\n2. Managing social media accounts\n3. Getting Google Ads certified\n4. Building a personal brand\nIt\'s accessible without a tech background!' },
-  { keywords: ['skill', 'skills', 'learn', 'improve'], response: 'Top skills for 2024:\n• Programming (Python, JavaScript)\n• Data Analysis\n• Cloud Computing\n• AI/ML\n• Cybersecurity\n• Communication\n• Problem Solving\nUse our Skill Gap Analysis tool to find exactly what you need to learn for your desired career!' },
-  { keywords: ['resume', 'cv'], response: 'Resume tips:\n1. Keep it 1-2 pages\n2. Include quantifiable achievements\n3. List relevant skills prominently\n4. Include projects with links\n5. Tailor for each application\n6. Use action verbs\n7. Proofread carefully\nUse our Resume Checker to get your resume scored!' }
-];
+    const chatbotKB = [
+      { keywords: ['programming', 'coding', 'programmer'], response: 'Programming is the foundation for many careers! Software Engineering, Web Development, AI/ML, and Data Science all require strong programming skills. Start with Python or JavaScript, build projects, and practice daily.' },
+      { keywords: ['salary', 'pay', 'earn', 'money'], response: 'Career salaries vary by field:\n• Software Engineer: $80K-$150K\n• Data Scientist: $90K-$160K\n• AI/ML Engineer: $100K-$180K\n• Cybersecurity: $85K-$155K\n\nSalaries increase with experience and certifications.' },
+      { keywords: ['data', 'data science', 'analytics'], response: 'Data Science is one of the hottest fields! You need:\n• Python or R programming\n• Statistics and Mathematics\n• Machine Learning\n• SQL for databases\n• Data visualization tools\n\nStart with online courses on Coursera or Kaggle.' },
+      { keywords: ['web', 'website', 'frontend', 'backend'], response: 'Web Development has 3 main paths:\n• Frontend: HTML, CSS, JavaScript, React\n• Backend: Node.js, Python, Databases\n• Full Stack: Both frontend and backend\n\nStart with HTML/CSS, then JavaScript, then a framework like React.' },
+      { keywords: ['cyber', 'security', 'hacking'], response: 'Cybersecurity is in high demand! Start with:\n1. Networking basics (CompTIA Network+)\n2. Security concepts (CompTIA Security+)\n3. Ethical hacking\n4. Hands-on platforms like TryHackMe\n\nGet certified to stand out!' },
+      { keywords: ['ai', 'artificial intelligence', 'machine learning', 'ml'], response: 'AI/ML is the future of tech! Requirements:\n• Strong math: Linear Algebra, Calculus, Statistics\n• Python programming\n• Machine Learning algorithms\n• Deep Learning frameworks\n• Hands-on projects\n\nConsider a Master\'s degree for advanced roles.' },
+      { keywords: ['degree', 'education', 'university', 'college'], response: 'For tech careers, a Bachelor\'s in Computer Science is most versatile. However, many successful developers are self-taught! What matters is:\n• Strong portfolio projects\n• GitHub contributions\n• Practical skills\n• Continuous learning\n\nBootcamps are a faster alternative.' },
+      { keywords: ['roadmap', 'path', 'steps', 'how to', 'guide'], response: 'General career roadmap:\n1. Choose a field that excites you\n2. Learn fundamentals (3-6 months)\n3. Build 3-5 projects\n4. Create GitHub portfolio\n5. Network and apply for jobs\n6. Keep learning and improving\n\nUse our Roadmap tool for specific paths!' }
+    ];
 
-const resourcesData = [
-  { title: 'freeCodeCamp', category: 'Web Development', type: 'Free Course', url: 'https://www.freecodecamp.org', icon: 'code' },
-  { title: 'CS50 by Harvard', category: 'Computer Science', type: 'Free Course', url: 'https://cs50.harvard.edu', icon: 'graduation-cap' },
-  { title: 'Kaggle', category: 'Data Science', type: 'Practice Platform', url: 'https://www.kaggle.com', icon: 'database' },
-  { title: 'TryHackMe', category: 'Cyber Security', type: 'Practice Platform', url: 'https://tryhackme.com', icon: 'shield' },
-  { title: 'Coursera ML Course', category: 'AI & ML', type: 'Free Course', url: 'https://www.coursera.org/learn/machine-learning', icon: 'brain' },
-  { title: 'MDN Web Docs', category: 'Web Development', type: 'Documentation', url: 'https://developer.mozilla.org', icon: 'book-open' },
-  { title: 'LeetCode', category: 'Programming', type: 'Practice Platform', url: 'https://leetcode.com', icon: 'code-2' },
-  { title: 'Google Digital Garage', category: 'Digital Marketing', type: 'Free Course', url: 'https://learndigital.withgoogle.com', icon: 'trending-up' },
-  { title: 'Python.org Tutorial', category: 'Programming', type: 'Documentation', url: 'https://docs.python.org/3/tutorial/', icon: 'file-text' }
-];
+    const resourcesData = [
+      { title: 'freeCodeCamp', category: 'Web Development', type: 'Free Course', url: 'https://www.freecodecamp.org', icon: 'code' },
+      { title: 'CS50 by Harvard', category: 'Computer Science', type: 'Free Course', url: 'https://cs50.harvard.edu', icon: 'graduation-cap' },
+      { title: 'Kaggle', category: 'Data Science', type: 'Practice', url: 'https://www.kaggle.com', icon: 'database' },
+      { title: 'TryHackMe', category: 'Cybersecurity', type: 'Practice', url: 'https://tryhackme.com', icon: 'shield' },
+      { title: 'Coursera ML', category: 'AI & ML', type: 'Free Course', url: 'https://www.coursera.org', icon: 'brain' },
+      { title: 'MDN Web Docs', category: 'Web Development', type: 'Docs', url: 'https://developer.mozilla.org', icon: 'book-open' },
+      { title: 'LeetCode', category: 'Programming', type: 'Practice', url: 'https://leetcode.com', icon: 'code-2' },
+      { title: 'Google Digital Garage', category: 'Digital Marketing', type: 'Course', url: 'https://learndigital.withgoogle.com', icon: 'trending-up' },
+      { title: 'Python.org', category: 'Programming', type: 'Docs', url: 'https://docs.python.org', icon: 'file-text' }
+    ];
 
-// ==================== NAVIGATION ====================
-function navigate(page) {
-  document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-  const el = document.getElementById('page-' + page);
-  if (el) {
-    el.classList.remove('hidden');
-    el.classList.add('fade-in');
-  }
-  if (page === 'resources') renderResources();
-  if (page === 'report') generateReport();
-  if (page === 'dashboard') updateDashboard();
-  window.scrollTo(0, 0);
-}
+    // ==================== AUTHENTICATION ====================
+    function checkAuth() {
+      const savedUser = localStorage.getItem('aiCareerCurrentUser');
+      if (!savedUser) {
+        navigate('home');
+        updateAuthUI(false);
+        return false;
+      }
 
-function toggleMobileMenu() {
-  const menu = document.getElementById('mobile-menu');
-  const overlay = document.getElementById('mobile-overlay');
-  menu.classList.toggle('open');
-  overlay.classList.toggle('hidden');
-}
+      currentUser = JSON.parse(savedUser);
+      const users = JSON.parse(localStorage.getItem('aiCareerUsers') || '[]');
+      const user = users.find(u => u.id === currentUser.id);
 
-function updateAuthUI(loggedIn) {
-  document.getElementById('login-btn').style.display = loggedIn ? 'none' : 'block';
-  document.getElementById('logout-btn').style.display = loggedIn ? 'block' : 'none';
-  ['nav-dashboard','nav-career','nav-chat','nav-roadmap','nav-skill','nav-resources','nav-compare','nav-resume','nav-report'].forEach(id => {
-    document.getElementById(id).style.display = loggedIn ? 'block' : 'none';
-  });
-  document.querySelectorAll('.mobile-auth').forEach(el => el.style.display = loggedIn ? 'block' : 'none');
-}
+      if (!user) {
+        localStorage.removeItem('aiCareerCurrentUser');
+        navigate('home');
+        updateAuthUI(false);
+        return false;
+      }
 
-// ==================== AUTH ====================
-function handleLogin(e) {
-  e.preventDefault();
-  const name = document.getElementById('login-name').value.trim();
-  const email = document.getElementById('login-email').value.trim();
-  const password = document.getElementById('login-password').value;
-  
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) { document.getElementById('email-error').classList.remove('hidden'); return; }
-  document.getElementById('email-error').classList.add('hidden');
-  if (password.length < 6) { document.getElementById('pass-error').classList.remove('hidden'); return; }
-  document.getElementById('pass-error').classList.add('hidden');
+      userData = {
+        career: user.career || '',
+        skillScore: user.skillScore || 0,
+        progress: user.progress || 0,
+        resumeScore: user.resumeScore || 0,
+        completedSkills: user.completedSkills || [],
+        completedCourses: user.completedCourses || []
+      };
 
-  currentUser = { name, email };
-  localStorage.setItem('aiCareerUser', JSON.stringify(currentUser));
-  
-  // Load saved data
-  const saved = localStorage.getItem('aiCareerData_' + email);
-  userData = saved ? JSON.parse(saved) : { career: '', skillScore: 0, progress: 0, resumeScore: 0, completedSkills: [], completedCourses: [] };
-  
-  updateAuthUI(true);
-  navigate('dashboard');
-}
+      updateAuthUI(true);
+      return true;
+    }
 
-function logout() {
-  currentUser = null;
-  updateAuthUI(false);
-  navigate('home');
-}
+    function handleLogout() {
+      localStorage.removeItem('aiCareerCurrentUser');
+      currentUser = null;
+      userData = {};
+      updateAuthUI(false);
+      navigate('home');
+    }
 
-function togglePassword() {
-  const input = document.getElementById('login-password');
-  input.type = input.type === 'password' ? 'text' : 'password';
-}
+    function updateAuthUI(loggedIn) {
+      document.getElementById('login-btn').style.display = loggedIn ? 'none' : 'block';
+      document.getElementById('logout-btn').style.display = loggedIn ? 'block' : 'none';
+      document.getElementById('profile-btn').style.display = loggedIn ? 'block' : 'none';
+      
+      ['nav-dashboard', 'nav-career', 'nav-chat', 'nav-roadmap', 'nav-resources'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = loggedIn ? 'block' : 'none';
+      });
 
-function saveUserData() {
-  if (currentUser) localStorage.setItem('aiCareerData_' + currentUser.email, JSON.stringify(userData));
-}
+      document.querySelectorAll('.mobile-auth').forEach(el => el.style.display = loggedIn ? 'block' : 'none');
+    }
 
-// ==================== DASHBOARD ====================
-function updateDashboard() {
-  if (!currentUser) return;
-  document.getElementById('dash-name').textContent = currentUser.name.split(' ')[0];
-  document.getElementById('stat-career').textContent = userData.career || 'Not Set';
-  document.getElementById('stat-skill').textContent = userData.skillScore + '%';
-  document.getElementById('stat-progress').textContent = userData.progress + '%';
-  document.getElementById('stat-resume').textContent = userData.resumeScore + '/100';
-  
-  const skills = userData.completedSkills || [];
-  const courses = userData.completedCourses || [];
-  const skillPct = Math.min((skills.length / 10) * 100, 100);
-  const coursePct = Math.min((courses.length / 5) * 100, 100);
-  const overall = Math.round((skillPct + coursePct + userData.progress) / 3);
-  
-  document.getElementById('prog-skills').textContent = skills.length + '/10';
-  document.getElementById('prog-courses').textContent = courses.length + '/5';
-  document.getElementById('prog-overall').textContent = overall + '%';
-  document.getElementById('prog-skills-bar').style.width = skillPct + '%';
-  document.getElementById('prog-courses-bar').style.width = coursePct + '%';
-  document.getElementById('prog-overall-bar').style.width = overall + '%';
-  
-  // Badges
-  const badges = document.getElementById('badges-section');
-  badges.innerHTML = '';
-  if (userData.career) badges.innerHTML += '<span class="badge inline-flex items-center gap-1 px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium"><i data-lucide="award" class="w-3 h-3"></i>Career Found</span>';
-  if (userData.resumeScore > 0) badges.innerHTML += '<span class="badge inline-flex items-center gap-1 px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium"><i data-lucide="file-check" class="w-3 h-3"></i>Resume Checked</span>';
-  if (skills.length >= 5) badges.innerHTML += '<span class="badge inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium"><i data-lucide="zap" class="w-3 h-3"></i>Skill Builder</span>';
-  if (badges.innerHTML) lucide.createIcons();
-}
+    // ==================== NAVIGATION ====================
+    function navigate(page) {
+      // Check auth for protected pages
+      const protectedPages = ['dashboard', 'career-rec', 'chatbot', 'roadmap', 'skill-gap', 'resources', 'resume', 'report', 'profile'];
+      if (protectedPages.includes(page) && !currentUser) {
+        navigate('login');
+        return;
+      }
 
-// ==================== SEARCH ====================
-function handleSearch(query) {
-  const results = document.getElementById('search-results');
-  if (!query.trim()) { results.classList.add('hidden'); return; }
-  query = query.toLowerCase();
-  let items = [];
-  Object.entries(careerData).forEach(([key, val]) => {
-    if (val.name.toLowerCase().includes(query)) items.push({ text: val.name, action: `navigate('career-rec')` });
-    val.skills.forEach(s => { if (s.toLowerCase().includes(query)) items.push({ text: s + ' (' + val.name + ')', action: `navigate('skill-gap')` }); });
-  });
-  if (items.length === 0) { results.classList.add('hidden'); return; }
-  results.innerHTML = items.slice(0, 6).map(i => `<button onclick="${i.action}" class="block w-full text-left px-4 py-2 text-sm hover:bg-purple-50 transition">${i.text}</button>`).join('');
-  results.classList.remove('hidden');
-}
+      document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+      const el = document.getElementById('page-' + page);
+      if (el) {
+        el.classList.remove('hidden');
+        el.classList.add('fade-in');
+      }
 
-// ==================== CAREER RECOMMENDATION ====================
-function generateCareerRec(e) {
-  e.preventDefault();
-  const interest = document.getElementById('career-interests').value;
-  const subject = document.getElementById('career-subjects').value;
-  const skills = document.getElementById('career-skills').value.toLowerCase();
-  
-  const mapping = {
-    programming: ['software-engineering', 'web-development', 'ai-ml'],
-    data: ['data-science', 'ai-ml', 'software-engineering'],
-    security: ['cybersecurity', 'software-engineering'],
-    ai: ['ai-ml', 'data-science', 'software-engineering'],
-    web: ['web-development', 'software-engineering', 'digital-marketing'],
-    medical: ['data-science', 'ai-ml'],
-    business: ['digital-marketing', 'data-science'],
-    marketing: ['digital-marketing', 'web-development'],
-    design: ['web-development', 'digital-marketing']
-  };
-  
-  const recommended = mapping[interest] || ['software-engineering', 'web-development'];
-  const results = document.getElementById('career-results');
-  results.innerHTML = '<h2 class="text-lg font-bold text-gray-900 mb-4">Your Career Matches</h2>';
-  
-  recommended.forEach((key, idx) => {
-    const career = careerData[key];
-    const matchPct = Math.max(95 - (idx * 12) - Math.floor(Math.random() * 5), 60);
-    results.innerHTML += `
-    <div class="card-hover bg-white rounded-2xl p-6 shadow-sm border border-gray-100 mb-4">
-      <div class="flex items-start justify-between mb-3">
-        <div>
-          <h3 class="font-bold text-lg text-gray-900">${career.name}</h3>
-          <p class="text-gray-500 text-sm">${career.description}</p>
+      if (page === 'dashboard') updateDashboard();
+      if (page === 'resources') renderResources();
+      if (page === 'report') generateReport();
+      if (page === 'profile') loadProfile();
+
+      window.scrollTo(0, 0);
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('mobile-overlay');
+      menu.classList.toggle('open');
+      overlay.classList.toggle('hidden');
+    }
+
+    // ==================== DASHBOARD ====================
+    function updateDashboard() {
+      if (!currentUser) return;
+
+      document.getElementById('dash-name').textContent = currentUser.fullname.split(' ')[0];
+      document.getElementById('stat-career').textContent = userData.career || 'Not Set';
+      document.getElementById('stat-skill').textContent = userData.skillScore + '%';
+      document.getElementById('stat-progress').textContent = userData.progress + '%';
+      document.getElementById('stat-resume').textContent = userData.resumeScore + '/100';
+
+      const skills = userData.completedSkills || [];
+      const courses = userData.completedCourses || [];
+      const skillPct = Math.min((skills.length / 10) * 100, 100);
+      const coursePct = Math.min((courses.length / 5) * 100, 100);
+      const overall = Math.round((skillPct + coursePct + userData.progress) / 3);
+
+      document.getElementById('prog-skills').textContent = skills.length + '/10';
+      document.getElementById('prog-courses').textContent = courses.length + '/5';
+      document.getElementById('prog-overall').textContent = overall + '%';
+      document.getElementById('prog-skills-bar').style.width = skillPct + '%';
+      document.getElementById('prog-courses-bar').style.width = coursePct + '%';
+      document.getElementById('prog-overall-bar').style.width = overall + '%';
+
+      const badges = document.getElementById('badges-section');
+      badges.innerHTML = '';
+      if (userData.career) badges.innerHTML += '<span class="badge inline-flex items-center gap-1 px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-medium"><i data-lucide="award" class="w-4 h-4"></i> Career Chosen</span>';
+      if (userData.resumeScore > 0) badges.innerHTML += '<span class="badge inline-flex items-center gap-1 px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-medium"><i data-lucide="file-check" class="w-4 h-4"></i> Resume Checked</span>';
+      if (skills.length >= 5) badges.innerHTML += '<span class="badge inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium"><i data-lucide="zap" class="w-4 h-4"></i> 5+ Skills</span>';
+      if (badges.innerHTML) lucide.createIcons();
+
+      saveUserData();
+    }
+
+    function saveUserData() {
+      if (!currentUser) return;
+      const users = JSON.parse(localStorage.getItem('aiCareerUsers') || '[]');
+      const userIndex = users.findIndex(u => u.id === currentUser.id);
+      if (userIndex !== -1) {
+        users[userIndex] = { ...users[userIndex], ...userData };
+        localStorage.setItem('aiCareerUsers', JSON.stringify(users));
+      }
+    }
+
+    // ==================== CAREER RECOMMENDATION ====================
+    function generateCareerRec(e) {
+      e.preventDefault();
+      const interest = document.getElementById('career-interests').value;
+      const education = document.getElementById('career-education').value;
+      const skills = document.getElementById('career-skills').value.toLowerCase();
+
+      const mapping = {
+        'programming': ['software-engineering', 'web-development', 'ai-ml'],
+        'data': ['data-science', 'ai-ml'],
+        'ai': ['ai-ml', 'data-science'],
+        'security': ['cybersecurity'],
+        'web': ['web-development', 'software-engineering'],
+        'business': ['data-science'],
+        'marketing': ['web-development']
+      };
+
+      const recommended = mapping[interest] || ['software-engineering'];
+      const results = document.getElementById('career-results');
+      results.innerHTML = '<h2 class="text-lg font-bold text-gray-900 mb-4">Your Career Matches</h2>';
+
+      recommended.forEach((key, idx) => {
+        const career = careerData[key];
+        const matchPct = Math.max(95 - (idx * 15), 60);
+        results.innerHTML += `
+          <div class="card-hover bg-white rounded-2xl p-6 shadow-sm border border-gray-100 mb-4">
+            <div class="flex items-start justify-between mb-3">
+              <div>
+                <h3 class="font-bold text-lg text-gray-900">${career.name}</h3>
+              </div>
+              <div class="px-3 py-1 rounded-full bg-purple-100 text-purple-700 font-bold text-sm">${matchPct}%</div>
+            </div>
+            <div class="grid grid-cols-2 gap-3 mt-4 text-sm">
+              <div><span class="text-gray-500">Salary</span><p class="font-medium">${career.salary}</p></div>
+              <div><span class="text-gray-500">Demand</span><p class="font-medium">${career.demand}</p></div>
+              <div><span class="text-gray-500">Growth</span><p class="font-medium">${career.growth}</p></div>
+              <div><span class="text-gray-500">Education</span><p class="font-medium">${career.education}</p></div>
+            </div>
+            <div class="mt-4">
+              <span class="text-xs text-gray-500">Required Skills</span>
+              <div class="flex flex-wrap gap-1 mt-2">${career.skills.map(s => `<span class="px-2 py-1 bg-purple-50 text-purple-700 rounded text-xs">${s}</span>`).join('')}</div>
+            </div>
+          </div>`;
+      });
+
+      results.classList.remove('hidden');
+      userData.career = careerData[recommended[0]].name;
+      userData.progress = Math.max(userData.progress, 20);
+      saveUserData();
+      lucide.createIcons();
+    }
+
+    // ==================== CHATBOT ====================
+    function sendChatMessage(e) {
+      e.preventDefault();
+      const input = document.getElementById('chat-input');
+      const msg = input.value.trim();
+      if (!msg) return;
+      input.value = '';
+      addChatBubble(msg, 'user');
+      setTimeout(() => { addChatBubble(getChatResponse(msg), 'bot'); }, 500);
+    }
+
+    function addChatBubble(text, type) {
+      const container = document.getElementById('chat-messages');
+      const div = document.createElement('div');
+      div.className = 'chat-bubble flex gap-3' + (type === 'user' ? ' justify-end' : '');
+      if (type === 'user') {
+        div.innerHTML = `<div class="bg-purple-600 text-white rounded-2xl rounded-tr-sm px-4 py-3 max-w-[80%]"><p class="text-sm">${text}</p></div>`;
+      } else {
+        div.innerHTML = `<div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center flex-shrink-0"><i data-lucide="bot" class="w-4 h-4 text-white"></i></div><div class="bg-purple-50 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[80%]"><p class="text-sm text-gray-700">${text}</p></div>`;
+      }
+      container.appendChild(div);
+      container.scrollTop = container.scrollHeight;
+      lucide.createIcons();
+    }
+
+    function getChatResponse(msg) {
+      const lower = msg.toLowerCase();
+      for (const entry of chatbotKB) {
+        if (entry.keywords.some(k => lower.includes(k))) return entry.response;
+      }
+      return "That's a great question! I'd recommend checking our Career Recommendation tool to find careers matching your interests, or exploring our Learning Resources for more information.";
+    }
+
+    // ==================== ROADMAP ====================
+    function generateRoadmap() {
+      const career = document.getElementById('roadmap-select').value;
+      const container = document.getElementById('roadmap-content');
+      if (!career) { container.innerHTML = ''; return; }
+
+      const data = roadmapData[career];
+      const colors = ['purple', 'blue', 'green', 'orange'];
+      container.innerHTML = data.map((level, i) => `
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-${colors[i]}-100 flex items-center justify-center font-bold text-${colors[i]}-700">${i + 1}</div>
+            <div><h3 class="font-bold text-gray-900">${level.level}</h3><p class="text-xs text-gray-500">Stage ${i + 1} of 4</p></div>
+          </div>
+          <div class="space-y-2 ml-5">
+            ${level.steps.map(step => `<div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-${colors[i]}-400"></div><span class="text-sm text-gray-700">${step}</span></div>`).join('')}
+          </div>
         </div>
-        <div class="px-3 py-1 rounded-full bg-purple-100 text-purple-700 font-bold text-sm">${matchPct}%</div>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
-        <div><span class="text-xs text-gray-500">Salary Range</span><p class="text-sm font-medium">${career.salary}</p></div>
-        <div><span class="text-xs text-gray-500">Job Demand</span><p class="text-sm font-medium">${career.demand}</p></div>
-        <div><span class="text-xs text-gray-500">Growth Rate</span><p class="text-sm font-medium">${career.growth}</p></div>
-        <div><span class="text-xs text-gray-500">Education</span><p class="text-sm font-medium">${career.education}</p></div>
-      </div>
-      <div class="mt-4"><span class="text-xs text-gray-500">Required Skills</span>
-        <div class="flex flex-wrap gap-1 mt-1">${career.skills.map(s => `<span class="px-2 py-1 bg-purple-50 text-purple-700 rounded text-xs">${s}</span>`).join('')}</div>
-      </div>
-    </div>`;
-  });
-  
-  results.classList.remove('hidden');
-  userData.career = careerData[recommended[0]].name;
-  userData.progress = Math.max(userData.progress, 20);
-  saveUserData();
-  lucide.createIcons();
-}
+      `).join('');
 
-// ==================== CHATBOT ====================
-function sendChatMessage(e) {
-  e.preventDefault();
-  const input = document.getElementById('chat-input');
-  const msg = input.value.trim();
-  if (!msg) return;
-  input.value = '';
-  addChatBubble(msg, 'user');
-  setTimeout(() => { addChatBubble(getChatResponse(msg), 'bot'); }, 500);
-}
+      userData.progress = Math.max(userData.progress, 30);
+      saveUserData();
+    }
 
-function askQuestion(q) {
-  document.getElementById('chat-input').value = q;
-  sendChatMessage(new Event('submit'));
-}
+    // ==================== SKILL GAP ====================
+    function analyzeSkillGap(e) {
+      e.preventDefault();
+      const currentSkills = document.getElementById('current-skills').value.split(',').map(s => s.trim().toLowerCase());
+      const career = document.getElementById('desired-career').value;
+      const required = careerData[career].skills.map(s => s.toLowerCase());
 
-function addChatBubble(text, type) {
-  const container = document.getElementById('chat-messages');
-  const div = document.createElement('div');
-  div.className = 'chat-bubble flex gap-3' + (type === 'user' ? ' justify-end' : '');
-  if (type === 'user') {
-    div.innerHTML = `<div class="bg-purple-600 text-white rounded-2xl rounded-tr-sm px-4 py-3 max-w-[80%]"><p class="text-sm">${text}</p></div>`;
-  } else {
-    div.innerHTML = `<div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center flex-shrink-0"><i data-lucide="bot" class="w-4 h-4 text-white"></i></div><div class="bg-purple-50 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[80%]"><p class="text-sm text-gray-700 whitespace-pre-line">${text}</p></div>`;
-  }
-  container.appendChild(div);
-  container.scrollTop = container.scrollHeight;
-  lucide.createIcons();
-}
+      const existing = currentSkills.filter(s => required.some(r => r.includes(s) || s.includes(r)));
+      const missing = careerData[career].skills.filter(s => !currentSkills.some(c => s.toLowerCase().includes(c) || c.includes(s.toLowerCase())));
+      const readiness = Math.round((existing.length / required.length) * 100);
 
-function getChatResponse(msg) {
-  const lower = msg.toLowerCase();
-  for (const entry of chatbotKB) {
-    if (entry.keywords.some(k => lower.includes(k))) return entry.response;
-  }
-  return "That's a great question! While I don't have specific information on that topic, I recommend:\n1. Using our Career Recommendation tool to find your ideal path\n2. Checking our Learning Resources section\n3. Trying the Skill Gap Analysis tool\n\nFeel free to ask about specific careers, skills, salaries, or educational paths!";
-}
+      const results = document.getElementById('skill-gap-results');
+      results.innerHTML = `
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+          <h3 class="font-bold text-lg mb-4">Skill Gap for ${careerData[career].name}</h3>
+          <div class="mb-6">
+            <div class="flex justify-between text-sm mb-2"><span>Readiness</span><span class="font-bold text-purple-700">${readiness}%</span></div>
+            <div class="w-full bg-gray-100 rounded-full h-3"><div class="progress-bar h-3 rounded-full gradient-bg" style="width:${readiness}%"></div></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="font-semibold text-green-600 mb-2 flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4"></i> Skills You Have</h4>
+              <div class="space-y-1">${existing.length ? existing.map(s => `<div class="flex items-center gap-2 text-sm"><div class="w-2 h-2 rounded-full bg-green-400"></div>${s}</div>`).join('') : '<p class="text-sm text-gray-600">No matching skills yet</p>'}</div>
+            </div>
+            <div>
+              <h4 class="font-semibold text-red-500 mb-2 flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4"></i> Skills to Learn</h4>
+              <div class="space-y-1">${missing.map(s => `<div class="flex items-center gap-2 text-sm"><div class="w-2 h-2 rounded-full bg-red-400"></div>${s}</div>`).join('')}</div>
+            </div>
+          </div>
+        </div>`;
 
-// ==================== ROADMAP ====================
-function generateRoadmap() {
-  const career = document.getElementById('roadmap-select').value;
-  const container = document.getElementById('roadmap-content');
-  if (!career) { container.innerHTML = ''; return; }
-  const data = roadmapData[career];
-  const colors = ['purple', 'blue', 'green', 'orange'];
-  container.innerHTML = data.map((level, i) => `
-    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 relative">
-      <div class="flex items-center gap-3 mb-4">
-        <div class="w-10 h-10 rounded-full bg-${colors[i]}-100 flex items-center justify-center font-bold text-${colors[i]}-700">${i + 1}</div>
-        <div><h3 class="font-bold text-gray-900">${level.level}</h3><p class="text-xs text-gray-500">Stage ${i + 1} of 4</p></div>
-      </div>
-      <div class="space-y-2 ml-5">
-        ${level.steps.map(step => `<div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-${colors[i]}-400"></div><span class="text-sm text-gray-700">${step}</span></div>`).join('')}
-      </div>
-    </div>
-  `).join('');
-  userData.progress = Math.max(userData.progress, 30);
-  saveUserData();
-}
+      results.classList.remove('hidden');
+      userData.skillScore = readiness;
+      userData.completedSkills = existing;
+      userData.progress = Math.max(userData.progress, 40);
+      saveUserData();
+      lucide.createIcons();
+    }
 
-// ==================== SKILL GAP ====================
-function analyzeSkillGap(e) {
-  e.preventDefault();
-  const currentSkills = document.getElementById('current-skills').value.split(',').map(s => s.trim().toLowerCase());
-  const career = document.getElementById('desired-career').value;
-  const required = careerData[career].skills.map(s => s.toLowerCase());
-  
-  const existing = currentSkills.filter(s => required.some(r => r.includes(s) || s.includes(r)));
-  const missing = careerData[career].skills.filter(s => !currentSkills.some(c => s.toLowerCase().includes(c) || c.includes(s.toLowerCase())));
-  const readiness = Math.round((existing.length / required.length) * 100);
-  
-  const results = document.getElementById('skill-gap-results');
-  results.innerHTML = `
-    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-      <h3 class="font-bold text-lg mb-4">Skill Gap Analysis for ${careerData[career].name}</h3>
-      <div class="mb-6">
-        <div class="flex justify-between text-sm mb-2"><span>Career Readiness</span><span class="font-bold text-purple-700">${readiness}%</span></div>
-        <div class="w-full bg-gray-100 rounded-full h-3"><div class="progress-bar h-3 rounded-full gradient-bg" style="width:${readiness}%"></div></div>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <h4 class="font-semibold text-green-600 mb-2 flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4"></i> Skills You Have (${existing.length})</h4>
-          <div class="space-y-1">${existing.length ? existing.map(s => `<div class="flex items-center gap-2 text-sm"><div class="w-2 h-2 rounded-full bg-green-400"></div>${s}</div>`).join('') : '<p class="text-sm text-gray-400">None matched</p>'}</div>
-        </div>
-        <div>
-          <h4 class="font-semibold text-red-500 mb-2 flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4"></i> Skills to Learn (${missing.length})</h4>
-          <div class="space-y-1">${missing.map(s => `<div class="flex items-center gap-2 text-sm"><div class="w-2 h-2 rounded-full bg-red-400"></div>${s}</div>`).join('')}</div>
-        </div>
-      </div>
-      <div class="mt-6 p-4 bg-purple-50 rounded-xl">
-        <h4 class="font-semibold text-purple-700 mb-2">Suggestions</h4>
-        <ul class="text-sm text-gray-700 space-y-1">
-          <li>• Focus on learning ${missing.slice(0, 2).join(' and ')} first</li>
-          <li>• Take online courses on platforms like Coursera or freeCodeCamp</li>
-          <li>• Build projects to practice new skills</li>
-          <li>• Join communities related to ${careerData[career].name}</li>
-        </ul>
-      </div>
-    </div>`;
-  results.classList.remove('hidden');
-  userData.skillScore = readiness;
-  userData.completedSkills = existing;
-  userData.progress = Math.max(userData.progress, 40);
-  saveUserData();
-  lucide.createIcons();
-}
+    // ==================== RESOURCES ====================
+    function renderResources() {
+      const grid = document.getElementById('resources-grid');
+      grid.innerHTML = resourcesData.map(r => `
+        <div class="card-hover bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+          <div class="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center mb-3">
+            <i data-lucide="${r.icon}" class="w-5 h-5 text-purple-700"></i>
+          </div>
+          <h3 class="font-semibold text-gray-900">${r.title}</h3>
+          <p class="text-xs text-gray-500 mt-1">${r.category} • ${r.type}</p>
+          <a href="${r.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 mt-3 text-sm text-purple-700 font-medium hover:text-purple-900">
+            Visit <i data-lucide="external-link" class="w-4 h-4"></i>
+          </a>
+        </div>`).join('');
+      lucide.createIcons();
+    }
 
-// ==================== RESOURCES ====================
-function renderResources() {
-  const grid = document.getElementById('resources-grid');
-  grid.innerHTML = resourcesData.map(r => `
-    <div class="card-hover bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-      <div class="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center mb-3"><i data-lucide="${r.icon}" class="w-5 h-5 text-purple-700"></i></div>
-      <h3 class="font-semibold text-gray-900">${r.title}</h3>
-      <p class="text-xs text-gray-500 mt-1">${r.category} • ${r.type}</p>
-      <a href="${r.url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 mt-3 text-sm text-purple-700 font-medium hover:text-purple-900">Visit <i data-lucide="external-link" class="w-3 h-3"></i></a>
-    </div>`).join('');
-  lucide.createIcons();
-}
+    // ==================== RESUME ====================
+    function analyzeResume() {
+      const text = document.getElementById('resume-text').value.trim();
+      if (!text) return;
 
-// ==================== COMPARE ====================
-function compareCarers() {
-  const c1 = document.getElementById('compare-career1').value;
-  const c2 = document.getElementById('compare-career2').value;
-  const d1 = careerData[c1], d2 = careerData[c2];
-  const results = document.getElementById('compare-results');
-  results.innerHTML = `
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-      <table class="w-full text-sm">
-        <thead class="gradient-bg text-white"><tr><th class="py-3 px-4 text-left">Criteria</th><th class="py-3 px-4 text-left">${d1.name}</th><th class="py-3 px-4 text-left">${d2.name}</th></tr></thead>
-        <tbody>
-          <tr class="border-b"><td class="py-3 px-4 font-medium">Salary</td><td class="py-3 px-4">${d1.salary}</td><td class="py-3 px-4">${d2.salary}</td></tr>
-          <tr class="border-b bg-gray-50"><td class="py-3 px-4 font-medium">Job Demand</td><td class="py-3 px-4">${d1.demand}</td><td class="py-3 px-4">${d2.demand}</td></tr>
-          <tr class="border-b"><td class="py-3 px-4 font-medium">Growth Rate</td><td class="py-3 px-4">${d1.growth}</td><td class="py-3 px-4">${d2.growth}</td></tr>
-          <tr class="border-b bg-gray-50"><td class="py-3 px-4 font-medium">Difficulty</td><td class="py-3 px-4">${d1.difficulty}</td><td class="py-3 px-4">${d2.difficulty}</td></tr>
-          <tr class="border-b"><td class="py-3 px-4 font-medium">Education</td><td class="py-3 px-4">${d1.education}</td><td class="py-3 px-4">${d2.education}</td></tr>
-          <tr class="bg-gray-50"><td class="py-3 px-4 font-medium">Key Skills</td><td class="py-3 px-4">${d1.skills.slice(0,4).join(', ')}</td><td class="py-3 px-4">${d2.skills.slice(0,4).join(', ')}</td></tr>
-        </tbody>
-      </table>
-    </div>`;
-  results.classList.remove('hidden');
-}
+      let score = 30;
+      const suggestions = [];
+      const found = [];
+      const missing = [];
 
-// ==================== RESUME ====================
-function analyzeResume() {
-  const text = document.getElementById('resume-text').value.trim();
-  if (!text) return;
-  
-  let score = 30;
-  const suggestions = [];
-  const found = [];
-  const missing = [];
-  
-  const keywords = ['experience', 'education', 'skills', 'projects', 'certification', 'achievement', 'leadership', 'communication', 'teamwork', 'problem solving'];
-  keywords.forEach(k => { if (text.toLowerCase().includes(k)) { score += 7; found.push(k); } else { missing.push(k); } });
-  
-  if (text.length > 300) score += 5;
-  if (text.length > 600) score += 5;
-  if (text.split('\n').length > 10) score += 5;
-  score = Math.min(score, 100);
-  
-  if (!text.toLowerCase().includes('project')) suggestions.push('Add projects section with descriptions');
-  if (!text.toLowerCase().includes('skill')) suggestions.push('Include a dedicated skills section');
-  if (text.length < 300) suggestions.push('Resume is too short - add more detail');
-  if (!text.toLowerCase().includes('education')) suggestions.push('Add your education background');
-  suggestions.push('Use action verbs to describe achievements');
-  suggestions.push('Quantify your accomplishments with numbers');
-  
-  const results = document.getElementById('resume-results');
-  results.innerHTML = `
-    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-      <div class="text-center mb-6">
-        <div class="inline-flex items-center justify-center w-24 h-24 rounded-full ${score >= 70 ? 'bg-green-100' : score >= 50 ? 'bg-yellow-100' : 'bg-red-100'} mb-3">
-          <span class="text-3xl font-bold ${score >= 70 ? 'text-green-600' : score >= 50 ? 'text-yellow-600' : 'text-red-600'}">${score}</span>
-        </div>
-        <p class="font-semibold text-gray-900">Resume Score: ${score}/100</p>
-        <p class="text-sm text-gray-500">${score >= 70 ? 'Good resume!' : score >= 50 ? 'Needs improvement' : 'Needs significant work'}</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <h4 class="font-semibold text-green-600 mb-2">Found Keywords (${found.length})</h4>
-          <div class="flex flex-wrap gap-1">${found.map(f => `<span class="px-2 py-1 bg-green-50 text-green-700 rounded text-xs">${f}</span>`).join('')}</div>
-        </div>
-        <div>
-          <h4 class="font-semibold text-red-500 mb-2">Missing Keywords (${missing.length})</h4>
-          <div class="flex flex-wrap gap-1">${missing.map(m => `<span class="px-2 py-1 bg-red-50 text-red-700 rounded text-xs">${m}</span>`).join('')}</div>
-        </div>
-      </div>
-      <div class="mt-6 p-4 bg-purple-50 rounded-xl">
-        <h4 class="font-semibold text-purple-700 mb-2">Improvement Suggestions</h4>
-        <ul class="text-sm text-gray-700 space-y-1">${suggestions.map(s => `<li>• ${s}</li>`).join('')}</ul>
-      </div>
-    </div>`;
-  results.classList.remove('hidden');
-  userData.resumeScore = score;
-  userData.progress = Math.max(userData.progress, 60);
-  saveUserData();
-}
+      const keywords = ['experience', 'education', 'skills', 'projects', 'certification', 'achievement'];
+      keywords.forEach(k => {
+        if (text.toLowerCase().includes(k)) { score += 10; found.push(k); } 
+        else { missing.push(k); }
+      });
 
-// ==================== REPORT ====================
-function generateReport() {
-  document.getElementById('report-date').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-  const body = document.getElementById('report-body');
-  body.innerHTML = `
-    <div class="space-y-6">
-      <div class="grid grid-cols-2 gap-4 p-4 bg-gray-50 rounded-xl">
-        <div><span class="text-xs text-gray-500">Student Name</span><p class="font-medium">${currentUser ? currentUser.name : 'N/A'}</p></div>
-        <div><span class="text-xs text-gray-500">Email</span><p class="font-medium">${currentUser ? currentUser.email : 'N/A'}</p></div>
-      </div>
-      <div>
-        <h3 class="font-bold text-gray-900 mb-2">Recommended Career</h3>
-        <p class="text-purple-700 font-semibold text-lg">${userData.career || 'Not yet determined'}</p>
-      </div>
-      <div>
-        <h3 class="font-bold text-gray-900 mb-2">Skill Assessment</h3>
-        <div class="flex items-center gap-3">
-          <div class="flex-1 bg-gray-100 rounded-full h-3"><div class="h-3 rounded-full gradient-bg" style="width:${userData.skillScore}%"></div></div>
-          <span class="font-bold text-purple-700">${userData.skillScore}%</span>
-        </div>
-      </div>
-      <div>
-        <h3 class="font-bold text-gray-900 mb-2">Resume Score</h3>
-        <p class="text-2xl font-bold ${userData.resumeScore >= 70 ? 'text-green-600' : 'text-orange-600'}">${userData.resumeScore}/100</p>
-      </div>
-      <div>
-        <h3 class="font-bold text-gray-900 mb-2">Overall Progress</h3>
-        <div class="flex items-center gap-3">
-          <div class="flex-1 bg-gray-100 rounded-full h-3"><div class="h-3 rounded-full bg-blue-500" style="width:${userData.progress}%"></div></div>
-          <span class="font-bold text-blue-600">${userData.progress}%</span>
-        </div>
-      </div>
-      <div class="p-4 bg-purple-50 rounded-xl">
-        <h3 class="font-bold text-purple-700 mb-2">Final Suggestions</h3>
-        <ul class="text-sm text-gray-700 space-y-1">
-          ${userData.career ? `<li>• Continue building skills for ${userData.career}</li>` : '<li>• Complete the Career Recommendation module first</li>'}
-          <li>• Use the Skill Gap Analysis to identify areas for improvement</li>
-          <li>• Follow the Career Roadmap step by step</li>
-          <li>• Keep your resume updated and check it regularly</li>
-          <li>• Explore learning resources to fill skill gaps</li>
-        </ul>
-      </div>
-    </div>`;
-}
+      if (text.length > 300) score += 5;
+      if (text.length > 600) score += 5;
+      score = Math.min(score, 100);
 
-function printReport() { window.print(); }
+      if (!text.toLowerCase().includes('project')) suggestions.push('Add a projects section');
+      if (!text.toLowerCase().includes('skill')) suggestions.push('Include a skills section');
+      if (text.length < 300) suggestions.push('Resume is too short - add more detail');
 
-function downloadReport() {
-  const content = document.getElementById('report-content').innerText;
-  const blob = new Blob(['AI CAREER GUIDANCE REPORT\n' + '='.repeat(40) + '\n\n' + content], { type: 'text/plain' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'Career_Guidance_Report.txt';
-  a.click();
-  URL.revokeObjectURL(a.href);
-}
+      const results = document.getElementById('resume-results');
+      results.innerHTML = `
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+          <div class="text-center mb-6">
+            <div class="inline-flex items-center justify-center w-24 h-24 rounded-full ${score >= 70 ? 'bg-green-100' : score >= 50 ? 'bg-yellow-100' : 'bg-red-100'} mb-3">
+              <span class="text-3xl font-bold ${score >= 70 ? 'text-green-600' : score >= 50 ? 'text-yellow-600' : 'text-red-600'}">${score}</span>
+            </div>
+            <p class="font-semibold text-gray-900">Resume Score: ${score}/100</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="font-semibold text-green-600 mb-2">Found Keywords</h4>
+              <div class="flex flex-wrap gap-1">${found.map(f => `<span class="px-2 py-1 bg-green-50 text-green-700 rounded text-xs">${f}</span>`).join('')}</div>
+            </div>
+            <div>
+              <h4 class="font-semibold text-red-500 mb-2">Missing Keywords</h4>
+              <div class="flex flex-wrap gap-1">${missing.map(m => `<span class="px-2 py-1 bg-red-50 text-red-700 rounded text-xs">${m}</span>`).join('')}</div>
+            </div>
+          </div>
+        </div>`;
 
-// ==================== INIT ====================
-function init() {
-  const saved = localStorage.getItem('aiCareerUser');
-  if (saved) {
-    currentUser = JSON.parse(saved);
-    const data = localStorage.getItem('aiCareerData_' + currentUser.email);
-    userData = data ? JSON.parse(data) : { career: '', skillScore: 0, progress: 0, resumeScore: 0, completedSkills: [], completedCourses: [] };
-    updateAuthUI(true);
-  }
-  lucide.createIcons();
-}
+      results.classList.remove('hidden');
+      userData.resumeScore = score;
+      userData.progress = Math.max(userData.progress, 60);
+      saveUserData();
+    }
 
-// Element SDK
-const defaultConfig = {
-  hero_title: 'AI Career & Skill<br>Guidance System',
-  hero_subtitle: 'Your AI-Powered Career Counselor — Get personalized career recommendations, skill analysis, and learning roadmaps tailored just for you.',
-  background_color: '#4B0082',
-  surface_color: '#ffffff',
-  text_color: '#1f2937',
-  primary_action_color: '#6A0DAD',
-  secondary_action_color: '#8B5CF6'
-};
+    // ==================== REPORT ====================
+    function generateReport() {
+      document.getElementById('report-date').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      const body = document.getElementById('report-body');
+      body.innerHTML = `
+        <div class="space-y-6">
+          <div class="grid grid-cols-2 gap-4 p-4 bg-gray-50 rounded-xl">
+            <div><span class="text-xs text-gray-500">Name</span><p class="font-medium">${currentUser ? currentUser.fullname : 'N/A'}</p></div>
+            <div><span class="text-xs text-gray-500">Email</span><p class="font-medium">${currentUser ? currentUser.email : 'N/A'}</p></div>
+          </div>
+          <div>
+            <h3 class="font-bold text-gray-900 mb-2">Recommended Career</h3>
+            <p class="text-purple-700 font-semibold text-lg">${userData.career || 'Not determined'}</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-gray-900 mb-2">Skill Assessment</h3>
+            <div class="flex items-center gap-3">
+              <div class="flex-1 bg-gray-100 rounded-full h-3"><div class="h-3 rounded-full gradient-bg" style="width:${userData.skillScore}%"></div></div>
+              <span class="font-bold text-purple-700">${userData.skillScore}%</span>
+            </div>
+          </div>
+          <div>
+            <h3 class="font-bold text-gray-900 mb-2">Overall Progress</h3>
+            <div class="flex items-center gap-3">
+              <div class="flex-1 bg-gray-100 rounded-full h-3"><div class="h-3 rounded-full bg-blue-500" style="width:${userData.progress}%"></div></div>
+              <span class="font-bold text-blue-600">${userData.progress}%</span>
+            </div>
+          </div>
+        </div>`;
+    }
 
-window.elementSdk.init({
-  defaultConfig,
-  onConfigChange: async (config) => {
-    const title = document.getElementById('hero-title');
-    const subtitle = document.getElementById('hero-subtitle');
-    if (title) title.innerHTML = config.hero_title || defaultConfig.hero_title;
-    if (subtitle) subtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
-  },
-  mapToCapabilities: (config) => ({
-    recolorables: [
-      { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
-      { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
-      { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
-      { get: () => config.primary_action_color || defaultConfig.primary_action_color, set: (v) => { config.primary_action_color = v; window.elementSdk.setConfig({ primary_action_color: v }); } },
-      { get: () => config.secondary_action_color || defaultConfig.secondary_action_color, set: (v) => { config.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } }
-    ],
-    borderables: [],
-    fontEditable: undefined,
-    fontSizeable: undefined
-  }),
-  mapToEditPanelValues: (config) => new Map([
-    ['hero_title', config.hero_title || defaultConfig.hero_title],
-    ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle]
-  ])
-});
+    function printReport() { window.print(); }
 
-init();
-</script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a04f5ee04f6cdfa5',t:'MTc4MDMyODk5MA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+    function downloadReport() {
+      const content = document.getElementById('report-content').innerText;
+      const blob = new Blob([content], { type: 'text/plain' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'Career_Report.txt';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    }
+
+    // ==================== PROFILE ====================
+    function loadProfile() {
+      if (!currentUser) return;
+      document.getElementById('profile-fullname').value = currentUser.fullname;
+      document.getElementById('profile-email').value = currentUser.email;
+      document.getElementById('profile-education').value = currentUser.education || '';
+      document.getElementById('profile-careers').value = userData.career || '';
+    }
+
+    function handleProfileUpdate(event) {
+      event.preventDefault();
+      userData.career = document.getElementById('profile-careers').value;
+      saveUserData();
+      alert('Profile updated successfully!');
+    }
+
+    // ==================== INIT ====================
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      checkAuth();
+    });
+  </script>
+</body>
 </html>
